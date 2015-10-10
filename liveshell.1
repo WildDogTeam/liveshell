@@ -4,7 +4,7 @@
 liveshell \- a tool to control your computer anywhere
 .SH SYNOPSIS
 .B liveshell
-[\fIOPTION\fR] [\fIwilddog-value\fR] [\fIcallback-command\fR]
+[\fIOPTION\fR] [\fIwilddog-url\fR] [\fIcallback-command\fR]
 .SH DESCRIPTION
 .\" Add any additional description here
 .PP
@@ -22,12 +22,12 @@ when triggered, print the command will be execute
 .TP
 \fB\-h\fR
 Show help for all options
-.TP
-\fB\-\-version\fR
-Show current version of liveshell
+.\" .TP
+.\" \fB\-\-version\fR
+.\" Show current version of liveshell
 .SH ARGUMENTS
 .TP
-\fBwilddog\-value\fR
+\fBwilddog\-url\fR
 An url of wilddog cloud, when it's value changed, liveshell will trigger the callback command, with the new value followed
 .TP
 \fBcallback\-command\fR

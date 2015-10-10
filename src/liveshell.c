@@ -5,10 +5,8 @@
  *
  * Description: liveshell file.
  *
- * Usage: liveshell  --url=<url> --cmd=<command> 
- *                      [--ignore-origin-data=yes | no] 
- *                      [--verbose=yes | no] 
- *                      [--ignore-leaf-quote=yes | no]
+ * Usage: liveshell    [option] <your wilddog url> 
+ *                      <your callback command> 
  *      
  *
  * History:
@@ -216,11 +214,11 @@ int main(int argc, char **argv)
 			break;
 		
         case 'h':
-            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> -ovs\n",
+            fprintf(stderr, "Usage: %s [option] <your wilddog url> <your callback command>\n",
                    argv[0]);
             return 0;
         default: /* '?' */
-            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> -ovs\n",
+            fprintf(stderr, "Usage: %s [option] <your wilddog url> <your callback command>\n",
                    argv[0]);
             return 0;
         }
@@ -231,7 +229,7 @@ int main(int argc, char **argv)
     
     if( argc <3 )
     {
-        printf("Usage: %s  --url=<url> --cmd=<command> -ovs\n", argv[0]);
+        printf("Usage: %s [option] <your wilddog url> <your callback command>\n", argv[0]);
         return 0;
     }
 

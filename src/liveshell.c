@@ -83,7 +83,6 @@ STATIC void observer_callback
         fflush(stdout);
         /*Handle cmd's arg, add to arg table. Such as "ls -l", "-l" is an arg*/
         
-		printf("quote:%s\n", (*(WATCH_CTX*)arg).quote);
         if((strncmp("no", (*(WATCH_CTX*)arg).quote, strlen("no")) != 0) && p_clone->p_wn_child == NULL && p_clone->d_wn_type == WILDDOG_NODE_TYPE_UTF8STRING)
         {
             /*If node is leaf and value is string, seperate to args by space*/
@@ -169,7 +168,9 @@ int main(int argc, char **argv)
     memset(quote,0,sizeof(quote));
 	memcpy(quote, "yes",strlen("yes"));
 
-	#if 1
+	memcpy(cmd, argv[argc-1], strlen(argv[argc-1]));
+	memcpy(url, argv[argc-2], strlen(argv[argc-2]));	
+	
     static struct option long_options[] = 
     {
         {"url",   required_argument, 0,  0 },
@@ -191,12 +192,10 @@ int main(int argc, char **argv)
                 if(strcmp(long_options[option_index].name,"url")==0)
                 {
                     memcpy(url, optarg,strlen(optarg));
-                    //printf("url:%s\n", url);
                 }
                 if(strcmp(long_options[option_index].name,"cmd")==0)
                 {
                     memcpy(cmd, optarg,strlen(optarg));
-                    //printf("cmd:%s\n", cmd);
                 }
                 if(strcmp(long_options[option_index].name,"ignore-origin-data")==0)
                     memcpy(data, optarg,strlen(optarg));
@@ -226,7 +225,7 @@ int main(int argc, char **argv)
             return 0;
         }
     }
-	#endif
+	
 	
 
     

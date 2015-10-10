@@ -1,0 +1,3 @@
+[submodule "lib/wilddog_client_coap"]
+	path = lib/wilddog_client_coap
+	url = https://github.com/WildDogTeam/wilddog_client_coap.git

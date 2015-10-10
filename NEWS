@@ -1,0 +1,8 @@
+Version 1.1 - Oct 10,2015
+
+* Cmd and string value support more than one arg now.
+
+Version 1.0 - Oct 9, 2015, by Baikal Hu
+
+* Initial commit, using Wilddog cloud and Wilddog C/Embedded SDK, developed 
+an useful tool to remote call shell commands.

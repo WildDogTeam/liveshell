@@ -64,7 +64,7 @@ STATIC void observer_callback
         return;
     }
 
-    if(strcmp("yes", (*(WATCH_CTX*)arg).data) == 0 && times == 0)
+    if(strncmp("yes", (*(WATCH_CTX*)arg).data, strlen("yes")) == 0 && times == 0)
     {
         times++;
         return;
@@ -83,7 +83,8 @@ STATIC void observer_callback
         fflush(stdout);
         /*Handle cmd's arg, add to arg table. Such as "ls -l", "-l" is an arg*/
         
-        if(strcmp("no", (*(WATCH_CTX*)arg).quote) != 0 && p_clone->p_wn_child == NULL && p_clone->d_wn_type == WILDDOG_NODE_TYPE_UTF8STRING)
+		printf("quote:%s\n", (*(WATCH_CTX*)arg).quote);
+        if((strncmp("no", (*(WATCH_CTX*)arg).quote, strlen("no")) != 0) && p_clone->p_wn_child == NULL && p_clone->d_wn_type == WILDDOG_NODE_TYPE_UTF8STRING)
         {
             /*If node is leaf and value is string, seperate to args by space*/
             pleaf = wmalloc(strlen(pstr)-1);
@@ -115,7 +116,7 @@ STATIC void observer_callback
             args[++j] = NULL;
         }
 
-        if(strcmp("yes", (*(WATCH_CTX*)arg).verbose) == 0)
+        if(strncmp("yes", (*(WATCH_CTX*)arg).verbose, strlen("yes")) == 0)
         {
 
             printf("exec this cmd and param: ");   
@@ -162,9 +163,13 @@ int main(int argc, char **argv)
     memset(url,0,sizeof(url));  
     memset(cmd,0,sizeof(cmd));
     memset(data,0,sizeof(data));
+	memcpy(data, "yes",strlen("yes"));
     memset(verbose,0,sizeof(verbose));
+	memcpy(verbose, "no",strlen("no"));
     memset(quote,0,sizeof(quote));
+	memcpy(quote, "yes",strlen("yes"));
 
+	#if 1
     static struct option long_options[] = 
     {
         {"url",   required_argument, 0,  0 },
@@ -175,7 +180,7 @@ int main(int argc, char **argv)
         {0,         0,                 0,  0 }
     };
 
-    while ((opt = getopt_long(argc, argv, "h",long_options, &option_index)) != -1) 
+    while ((opt = getopt_long(argc, argv, "ovsh",long_options, &option_index)) != -1) 
     {
         switch (opt) 
         {
@@ -201,21 +206,33 @@ int main(int argc, char **argv)
                     memcpy(quote, optarg,strlen(optarg));
             }
             break;
-
+		case 'o':
+			memcpy(data, "no",strlen("no"));
+			break;
+		case 'v':
+			memcpy(verbose, "yes",strlen("yes"));
+			break;
+		case 's':
+			memcpy(quote, "no",strlen("no"));
+			break;
+		
         case 'h':
-            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> [--ignore-origin-data=yes | no] [--verbose=yes | no] [--ignore-leaf-quote=yes | no]\n",
+            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> -ovs\n",
                    argv[0]);
             return 0;
         default: /* '?' */
-            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> [--ignore-origin-data=yes | no] [--verbose=yes | no] [--ignore-leaf-quote=yes | no]\n",
+            fprintf(stderr, "Usage: %s  --url=<url> --cmd=<command> -ovs\n",
                    argv[0]);
             return 0;
         }
     }
+	#endif
+	
+
     
     if( argc <3 )
     {
-        printf("Usage: %s  --url=<url> --cmd=<command> [--ignore-origin-data=yes | no] [--verbose=yes | no] [--ignore-leaf-quote=yes | no]\n", argv[0]);
+        printf("Usage: %s  --url=<url> --cmd=<command> -ovs\n", argv[0]);
         return 0;
     }
 

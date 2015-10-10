@@ -165,14 +165,9 @@ int main(int argc, char **argv)
 	memcpy(verbose, "no",strlen("no"));
     memset(quote,0,sizeof(quote));
 	memcpy(quote, "yes",strlen("yes"));
-
-	memcpy(cmd, argv[argc-1], strlen(argv[argc-1]));
-	memcpy(url, argv[argc-2], strlen(argv[argc-2]));	
 	
     static struct option long_options[] = 
     {
-        {"url",   required_argument, 0,  0 },
-        {"cmd",     required_argument, 0,  0 },
         {"ignore-origin-data",     required_argument, 0,  0 },
         {"verbose", required_argument, 0,  0},
         {"ignore-leaf-quote", required_argument, 0,  0},
@@ -187,14 +182,6 @@ int main(int argc, char **argv)
             //printf("option %s\n", long_options[option_index].name);
             if (optarg)
             {
-                if(strcmp(long_options[option_index].name,"url")==0)
-                {
-                    memcpy(url, optarg,strlen(optarg));
-                }
-                if(strcmp(long_options[option_index].name,"cmd")==0)
-                {
-                    memcpy(cmd, optarg,strlen(optarg));
-                }
                 if(strcmp(long_options[option_index].name,"ignore-origin-data")==0)
                     memcpy(data, optarg,strlen(optarg));
                 if(strcmp(long_options[option_index].name,"verbose")==0)
@@ -224,15 +211,16 @@ int main(int argc, char **argv)
         }
     }
 	
-	
 
-    
     if( argc <3 )
     {
         printf("Usage: %s [option] <your wilddog url> <your callback command>\n", argv[0]);
         return 0;
     }
-
+	
+	memcpy(cmd, argv[argc-1], strlen(argv[argc-1]));
+	memcpy(url, argv[argc-2], strlen(argv[argc-2]));	
+	
     wilddog = wilddog_initWithUrl((Wilddog_Str_T *)url);
 
     if(0 == wilddog)

@@ -25,6 +25,8 @@
 #include "wilddog.h"
 
 
+#define  LIVESHELL_VERSION	"1.1" 
+
 typedef struct _watch_ctx
 {
     BOOL *isFinished;
@@ -160,17 +162,18 @@ int main(int argc, char **argv)
     memset(url,0,sizeof(url));  
     memset(cmd,0,sizeof(cmd));
     memset(data,0,sizeof(data));
-	memcpy(data, "yes",strlen("yes"));
+    memcpy(data, "yes",strlen("yes"));
     memset(verbose,0,sizeof(verbose));
-	memcpy(verbose, "no",strlen("no"));
+    memcpy(verbose, "no",strlen("no"));
     memset(quote,0,sizeof(quote));
-	memcpy(quote, "yes",strlen("yes"));
+    memcpy(quote, "yes",strlen("yes"));
 	
     static struct option long_options[] = 
     {
         {"ignore-origin-data",     required_argument, 0,  0 },
         {"verbose", required_argument, 0,  0},
         {"ignore-leaf-quote", required_argument, 0,  0},
+        {"version", no_argument, 0,  0},
         {0,         0,                 0,  0 }
     };
 
@@ -179,7 +182,7 @@ int main(int argc, char **argv)
         switch (opt) 
         {
         case 0:
-            //printf("option %s\n", long_options[option_index].name);
+            //printf("option!!! %s\n", long_options[option_index].name);
             if (optarg)
             {
                 if(strcmp(long_options[option_index].name,"ignore-origin-data")==0)
@@ -189,16 +192,21 @@ int main(int argc, char **argv)
                 if(strcmp(long_options[option_index].name,"ignore-leaf-quote")==0)
                     memcpy(quote, optarg,strlen(optarg));
             }
+	    if(strcmp(long_options[option_index].name,"version")==0)
+	    {
+		    printf("LiveShell Version: %s\n", LIVESHELL_VERSION);	
+		    return 0;
+	    }
             break;
-		case 'o':
-			memcpy(data, "no",strlen("no"));
-			break;
-		case 'v':
-			memcpy(verbose, "yes",strlen("yes"));
-			break;
-		case 's':
-			memcpy(quote, "no",strlen("no"));
-			break;
+	case 'o':
+	    memcpy(data, "no",strlen("no"));
+	    break;
+	case 'v':
+	    memcpy(verbose, "yes",strlen("yes"));
+	    break;
+	case 's':
+	    memcpy(quote, "no",strlen("no"));
+	    break;
 		
         case 'h':
             fprintf(stderr, "Usage: %s [option] <your wilddog url> <your callback command>\n",
@@ -218,8 +226,8 @@ int main(int argc, char **argv)
         return 0;
     }
 	
-	memcpy(cmd, argv[argc-1], strlen(argv[argc-1]));
-	memcpy(url, argv[argc-2], strlen(argv[argc-2]));	
+    memcpy(cmd, argv[argc-1], strlen(argv[argc-1]));
+    memcpy(url, argv[argc-2], strlen(argv[argc-2]));	
 	
     wilddog = wilddog_initWithUrl((Wilddog_Str_T *)url);
 

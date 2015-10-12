@@ -4,6 +4,18 @@ liveshell工具是采用Wilddog云以及WildDog C/嵌入式SDK制作的，远程
 
 WildDog C/嵌入式的SDK 使用的是CoAP UDP + DTLS + COBR技术。
 
+Linux发行版均可使用该工具，已在一下发行版中测试过：
+
+	Linux版本                                                       内核版本
+	centos-release-7-1.1503.el7.centos.2.8.x86_64                   3.10.0-229.el7.x86_64
+	centos-release-6-5.el6.centos.11.1.x86_64                       2.6.32-431.el6.x86_64
+	centos-release-5.5.el5.centos                                   2.6.18-194.el5
+	Red Hat Enterprise Linux Server release 7.1  (Maipo)            3.10.0-229.el7.x86_64
+	Red Hat Enterprise Linux Server release 6.6 (Santiago)          2.6.32-504.el6.x86_64
+	Red Hat Enterprise Linux Server release 5.11 (Tikanga)          2.6.18-398.el5
+	Ubuntu14.04.01                                                  3.16.0-30-generic
+	Ubuntu12.04                                                     3.13.0-32-generic
+
 ####linux环境下安装说明：
 #####1. 下载
 

@@ -29,7 +29,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 	git submodule update --init --recursive
 
 #####2. 安装
-注意权限，install需要sudo
+注意权限，install需要root权限
 
 	./configure
 	make

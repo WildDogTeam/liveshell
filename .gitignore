@@ -13,6 +13,7 @@ config.log
 config.status
 stamp-h1
 src/liveshell
+autom4te.cache/
 # Libraries
 *.lib
 *.a

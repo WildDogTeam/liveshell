@@ -1,6 +1,3 @@
-[submodule "lib/wilddog_client_coap"]
-	path = lib/wilddog_client_coap
-	url = https://github.com/WildDogTeam/wilddog_client_coap.git
-[submodule "lib/wildog-client-c"]
-	path = lib/wildog-client-c
+[submodule "lib/wilddog-client-c"]
+	path = lib/wilddog-client-c
 	url = https://github.com/WildDogTeam/wilddog-client-c.git

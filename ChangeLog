@@ -1,4 +1,9 @@
-Version 1.1 - Oct 10,2015
+Version 1.2 - Oct 13, 2015
+
+New:
+Change submodule from wilddog_client_coap to wilddog-client-c.
+
+Version 1.1 - Oct 10, 2015
 
 New:
 cmd and string value support more than one arg now.

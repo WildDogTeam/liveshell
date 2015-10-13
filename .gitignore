@@ -7,13 +7,18 @@
 # Precompiled Headers
 *.gch
 *.pch
-
+Makefile
+config.h
+config.log
+config.status
+stamp-h1
 # Libraries
 *.lib
 *.a
 *.la
 *.lo
-
+*.Po
+.deps/
 # Shared objects (inc. Windows DLLs)
 *.dll
 *.so

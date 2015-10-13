@@ -179,7 +179,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 liveshell_SOURCES = liveshell.c
-INCLUDES = -I ../lib/wilddog_client_coap/include
+INCLUDES = -I ../lib/wilddog-client-c/include
 liveshell_LDADD = ../lib/libwilddog.a
 all: all-am
 

@@ -12,6 +12,7 @@ config.h
 config.log
 config.status
 stamp-h1
+src/liveshell
 # Libraries
 *.lib
 *.a

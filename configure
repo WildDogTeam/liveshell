@@ -2810,7 +2810,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=LiveShell
- VERSION=1.0
+ VERSION=1.2
 
 
 cat >>confdefs.h <<_ACEOF

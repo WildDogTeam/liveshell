@@ -629,7 +629,6 @@ LIBOBJS
 EGREP
 GREP
 CPP
-WILDDOG_PORT
 WILDDOG_RECEIVE_TIMEOUT
 WILDDOG_RETRANSMITE_TIME
 WILDDOG_REQ_QUEUE_NUM
@@ -725,7 +724,6 @@ with_maxsize
 with_queuenum
 with_retransmitetime
 with_receivetimeout
-with_wilddogport
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1363,7 +1361,6 @@ Optional Packages:
  --with-queuenum=                Specify the queue num
  --with-retransmitetime=                Specify the retransmite time
  --with-receivetimeout=                Specify the receive timeout
- --with-wilddogport=                Specify the wilddog port
 
 Some influential environment variables:
   CC          C compiler command
@@ -4007,18 +4004,11 @@ fi
 
 
 
-
-# Check whether --with-wilddogport was given.
-if test "${with_wilddogport+set}" = set; then :
-  withval=$with_wilddogport;
-cat >>confdefs.h <<_ACEOF
-#define WILDDOG_PORT $withval
-_ACEOF
-
-
-fi
-
-
+#AC_ARG_WITH(wilddogport,
+#	    [ --with-wilddogport=                Specify the wilddog port],
+#		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
+#)
+#AC_SUBST(WILDDOG_PORT)
 
 
 $as_echo "#define WILDDOG_PORT 5684" >>confdefs.h

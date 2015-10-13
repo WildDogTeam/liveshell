@@ -49,11 +49,11 @@ AC_ARG_WITH(receivetimeout,
 )
 AC_SUBST(WILDDOG_RECEIVE_TIMEOUT)
 
-AC_ARG_WITH(wilddogport,
-	    [ --with-wilddogport=                Specify the wilddog port],
-		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
-)
-AC_SUBST(WILDDOG_PORT)
+#AC_ARG_WITH(wilddogport,
+#	    [ --with-wilddogport=                Specify the wilddog port],
+#		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
+#)
+#AC_SUBST(WILDDOG_PORT)
 
 AC_DEFINE([WILDDOG_PORT], [5684], [Description])
 

@@ -130,7 +130,6 @@ STRIP = @STRIP@
 VERSION = @VERSION@
 WILDDOG_LITTLE_ENDIAN = @WILDDOG_LITTLE_ENDIAN@
 WILDDOG_MACHINE_BITS = @WILDDOG_MACHINE_BITS@
-WILDDOG_PORT = @WILDDOG_PORT@
 WILDDOG_PROTO_MAXSIZE = @WILDDOG_PROTO_MAXSIZE@
 WILDDOG_RECEIVE_TIMEOUT = @WILDDOG_RECEIVE_TIMEOUT@
 WILDDOG_REQ_QUEUE_NUM = @WILDDOG_REQ_QUEUE_NUM@
@@ -179,7 +178,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
 liveshell_SOURCES = liveshell.c
-INCLUDES = -I ../lib/wilddog_client_coap/include
+INCLUDES = -I ../lib/wilddog-client-c/include
 liveshell_LDADD = ../lib/libwilddog.a
 all: all-am
 

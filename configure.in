@@ -3,10 +3,10 @@
 
 AC_PREREQ([2.69])
 AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
-AC_CONFIG_SRCDIR([lib/wilddog_client_coap/src/wilddog_api.c])
+AC_CONFIG_SRCDIR([lib/wilddog-client-c/src/wilddog_api.c])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE(LiveShell, 1.0)
+AM_INIT_AUTOMAKE(LiveShell, 1.2)
 
 # Checks for programs.
 AC_PROG_CC
@@ -49,11 +49,11 @@ AC_ARG_WITH(receivetimeout,
 )
 AC_SUBST(WILDDOG_RECEIVE_TIMEOUT)
 
-AC_ARG_WITH(wilddogport,
-	    [ --with-wilddogport=                Specify the wilddog port],
-		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
-)
-AC_SUBST(WILDDOG_PORT)
+#AC_ARG_WITH(wilddogport,
+#	    [ --with-wilddogport=                Specify the wilddog port],
+#		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
+#)
+#AC_SUBST(WILDDOG_PORT)
 
 AC_DEFINE([WILDDOG_PORT], [5684], [Description])
 

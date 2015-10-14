@@ -2,7 +2,7 @@
 
 liveshell工具是采用Wilddog云以及WildDog C/嵌入式SDK制作的，远程调用shell脚本的工具。它监听某个url下数据的变化，当数据发生变化后，触发预先安排好的可执行程序或者shell脚本，同时将变化后的数据作为参数传入。
 
-WildDog C/嵌入式的SDK 使用的是CoAP UDP + DTLS + COBR技术。
+WildDog C/嵌入式的SDK 使用的是CoAP UDP + DTLS + CBOR技术。
 
 Linux发行版均可使用该工具，已在以下发行版中测试过：
 

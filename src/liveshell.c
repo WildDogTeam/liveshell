@@ -25,7 +25,7 @@
 #include "wilddog.h"
 
 
-#define  LIVESHELL_VERSION	"1.1" 
+#define  LIVESHELL_VERSION	"1.2" 
 
 typedef struct _watch_ctx
 {

@@ -49,13 +49,25 @@ AC_ARG_WITH(receivetimeout,
 )
 AC_SUBST(WILDDOG_RECEIVE_TIMEOUT)
 
+AC_ARG_WITH(sectype,
+	    [ --with-sectype=                Specify the sec type],
+		#AC_DEFINE_UNQUOTED([APP_SEC_TYPE],["$withval"], [des])
+		APP_SEC_TYPE=$withval
+)
+AC_SUBST(APP_SEC_TYPE)
+
+#AM_CONDITIONAL(WITH_TINYDTLS, [test x$APP_SEC_TYPE = xtinydtls])
+AM_CONDITIONAL(WITHOUT_DTLS, [test x$APP_SEC_TYPE = xnosec])
+AM_CONDITIONAL(WITH_DTLS, [test x$APP_SEC_TYPE = xdtls])
+
+
 #AC_ARG_WITH(wilddogport,
 #	    [ --with-wilddogport=                Specify the wilddog port],
 #		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
 #)
 #AC_SUBST(WILDDOG_PORT)
 
-AC_DEFINE([WILDDOG_PORT], [5684], [Description])
+#AC_DEFINE([WILDDOG_PORT], [5684], [Description])
 
 # Checks for header files.
 AC_CHECK_HEADERS([arpa/inet.h fcntl.h inttypes.h malloc.h netdb.h netinet/in.h stddef.h stdint.h stdlib.h string.h sys/socket.h sys/time.h unistd.h])

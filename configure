@@ -629,6 +629,11 @@ LIBOBJS
 EGREP
 GREP
 CPP
+WITH_DTLS_FALSE
+WITH_DTLS_TRUE
+WITHOUT_DTLS_FALSE
+WITHOUT_DTLS_TRUE
+APP_SEC_TYPE
 WILDDOG_RECEIVE_TIMEOUT
 WILDDOG_RETRANSMITE_TIME
 WILDDOG_REQ_QUEUE_NUM
@@ -724,6 +729,7 @@ with_maxsize
 with_queuenum
 with_retransmitetime
 with_receivetimeout
+with_sectype
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1361,6 +1367,7 @@ Optional Packages:
  --with-queuenum=                Specify the queue num
  --with-retransmitetime=                Specify the retransmite time
  --with-receivetimeout=                Specify the receive timeout
+ --with-sectype=                Specify the sec type
 
 Some influential environment variables:
   CC          C compiler command
@@ -4004,15 +4011,42 @@ fi
 
 
 
+
+# Check whether --with-sectype was given.
+if test "${with_sectype+set}" = set; then :
+  withval=$with_sectype; #AC_DEFINE_UNQUOTED([APP_SEC_TYPE],["$withval"], [des])
+		APP_SEC_TYPE=$withval
+
+fi
+
+
+
+#AM_CONDITIONAL(WITH_TINYDTLS, [test x$APP_SEC_TYPE = xtinydtls])
+ if test x$APP_SEC_TYPE = xnosec; then
+  WITHOUT_DTLS_TRUE=
+  WITHOUT_DTLS_FALSE='#'
+else
+  WITHOUT_DTLS_TRUE='#'
+  WITHOUT_DTLS_FALSE=
+fi
+
+ if test x$APP_SEC_TYPE = xdtls; then
+  WITH_DTLS_TRUE=
+  WITH_DTLS_FALSE='#'
+else
+  WITH_DTLS_TRUE='#'
+  WITH_DTLS_FALSE=
+fi
+
+
+
 #AC_ARG_WITH(wilddogport,
 #	    [ --with-wilddogport=                Specify the wilddog port],
 #		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
 #)
 #AC_SUBST(WILDDOG_PORT)
 
-
-$as_echo "#define WILDDOG_PORT 5684" >>confdefs.h
-
+#AC_DEFINE([WILDDOG_PORT], [5684], [Description])
 
 # Checks for header files.
 
@@ -5173,6 +5207,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${WITHOUT_DTLS_TRUE}" && test -z "${WITHOUT_DTLS_FALSE}"; then
+  as_fn_error $? "conditional \"WITHOUT_DTLS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${WITH_DTLS_TRUE}" && test -z "${WITH_DTLS_FALSE}"; then
+  as_fn_error $? "conditional \"WITH_DTLS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

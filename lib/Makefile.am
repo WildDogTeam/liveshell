@@ -42,7 +42,7 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/include/wilddog_config.h \
 					 ./wilddog-client-c/include/wilddog_debug.h \
 					 ./wilddog-client-c/include/wilddog_port.h
-CFLAGS+=-DWILDDOG_PORT=5683
+AM_CFLAGS=-DWILDDOG_PORT=5683
 else
 if WITH_DTLS
 INCLUDES+=-I $(top_srcdir)/../lib/src/secure/dtls/inc   -I ./wilddog-client-c/src/secure/dtls/inc
@@ -197,7 +197,7 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_csr.h \
 					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509.h \
 					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/xtea.h
-CFLAGS+=-DWILDDOG_PORT=5684
+AM_CFLAGS=-DWILDDOG_PORT=5684
 else
 libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/src/performtest.c \
@@ -274,6 +274,6 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/include/wilddog_config.h \
 					 ./wilddog-client-c/include/wilddog_debug.h \
 					 ./wilddog-client-c/include/wilddog_port.h
-CFLAGS+=-DWILDDOG_PORT=5684 -fno-strict-aliasing
+AM_CFLAGS=-DWILDDOG_PORT=5684 -fno-strict-aliasing
 endif
 endif

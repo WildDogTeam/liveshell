@@ -143,9 +143,6 @@
 /* des */
 #undef WILDDOG_MACHINE_BITS
 
-/* Description */
-#undef WILDDOG_PORT
-
 /* des */
 #undef WILDDOG_PROTO_MAXSIZE
 

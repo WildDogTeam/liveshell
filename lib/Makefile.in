@@ -49,6 +49,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@am__append_1 = -I $(top_srcdir)/../lib/src/secure/dtls/inc   -I ./wilddog-client-c/src/secure/dtls/inc
 subdir = lib
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -64,18 +65,301 @@ AR = ar
 ARFLAGS = cru
 libwilddog_a_AR = $(AR) $(ARFLAGS)
 libwilddog_a_LIBADD =
-am_libwilddog_a_OBJECTS = wilddog_posix.$(OBJEXT) \
-	performtest.$(OBJEXT) ramtest.$(OBJEXT) wilddog_api.$(OBJEXT) \
-	wilddog_common.$(OBJEXT) wilddog_conn.$(OBJEXT) \
-	wilddog_ct.$(OBJEXT) wilddog_debug.$(OBJEXT) \
-	wilddog_event.$(OBJEXT) wilddog_node.$(OBJEXT) \
-	wilddog_sec_host.$(OBJEXT) wilddog_store.$(OBJEXT) \
-	wilddog_url_parser.$(OBJEXT) option.$(OBJEXT) pdu.$(OBJEXT) \
-	wilddog_conn_coap.$(OBJEXT) ccm.$(OBJEXT) crypto.$(OBJEXT) \
-	debug.$(OBJEXT) dtls.$(OBJEXT) dtls_time.$(OBJEXT) \
-	ecc.$(OBJEXT) hmac.$(OBJEXT) netq.$(OBJEXT) peer.$(OBJEXT) \
-	rijndael.$(OBJEXT) session.$(OBJEXT) sha2.$(OBJEXT) \
-	wilddog_conn_sec_dtls.$(OBJEXT) wilddog_cbor.$(OBJEXT)
+am__libwilddog_a_SOURCES_DIST =  \
+	./wilddog-client-c/platform/linux/wilddog_posix.c \
+	./wilddog-client-c/src/performtest.c \
+	./wilddog-client-c/src/ramtest.c \
+	./wilddog-client-c/src/test_lib.h \
+	./wilddog-client-c/src/utlist.h \
+	./wilddog-client-c/src/wilddog_api.c \
+	./wilddog-client-c/src/wilddog_common.c \
+	./wilddog-client-c/src/wilddog_common.h \
+	./wilddog-client-c/src/wilddog_conn.c \
+	./wilddog-client-c/src/wilddog_conn.h \
+	./wilddog-client-c/src/wilddog_ct.c \
+	./wilddog-client-c/src/wilddog_ct.h \
+	./wilddog-client-c/src/wilddog_debug.c \
+	./wilddog-client-c/src/wilddog_endian.h \
+	./wilddog-client-c/src/wilddog_event.c \
+	./wilddog-client-c/src/wilddog_event.h \
+	./wilddog-client-c/src/wilddog_node.c \
+	./wilddog-client-c/src/wilddog_payload.h \
+	./wilddog-client-c/src/wilddog_sec.h \
+	./wilddog-client-c/src/wilddog_sec_host.c \
+	./wilddog-client-c/src/wilddog_sec_host.h \
+	./wilddog-client-c/src/wilddog_store.c \
+	./wilddog-client-c/src/wilddog_store.h \
+	./wilddog-client-c/src/wilddog_url_parser.c \
+	./wilddog-client-c/src/wilddog_url_parser.h \
+	./wilddog-client-c/src/networking/coap/bits.h \
+	./wilddog-client-c/src/networking/coap/option.c \
+	./wilddog-client-c/src/networking/coap/option.h \
+	./wilddog-client-c/src/networking/coap/pdu.c \
+	./wilddog-client-c/src/networking/coap/pdu.h \
+	./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c \
+	./wilddog-client-c/src/networking/coap/wilddog_conn_coap.h \
+	./wilddog-client-c/src/secure/tinydtls/alert.h \
+	./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c \
+	./wilddog-client-c/src/secure/tinydtls/ccm.h \
+	./wilddog-client-c/src/secure/tinydtls/crypto.c \
+	./wilddog-client-c/src/secure/tinydtls/crypto.h \
+	./wilddog-client-c/src/secure/tinydtls/tiny_debug.c \
+	./wilddog-client-c/src/secure/tinydtls/debug.h \
+	./wilddog-client-c/src/secure/tinydtls/dtls.c \
+	./wilddog-client-c/src/secure/tinydtls/dtls.h \
+	./wilddog-client-c/src/secure/tinydtls/dtls_config.h \
+	./wilddog-client-c/src/secure/tinydtls/dtls_time.c \
+	./wilddog-client-c/src/secure/tinydtls/dtls_time.h \
+	./wilddog-client-c/src/secure/tinydtls/ecc.c \
+	./wilddog-client-c/src/secure/tinydtls/ecc.h \
+	./wilddog-client-c/src/secure/tinydtls/global.h \
+	./wilddog-client-c/src/secure/tinydtls/hmac.c \
+	./wilddog-client-c/src/secure/tinydtls/hmac.h \
+	./wilddog-client-c/src/secure/tinydtls/netq.c \
+	./wilddog-client-c/src/secure/tinydtls/netq.h \
+	./wilddog-client-c/src/secure/tinydtls/numeric.h \
+	./wilddog-client-c/src/secure/tinydtls/peer.c \
+	./wilddog-client-c/src/secure/tinydtls/peer.h \
+	./wilddog-client-c/src/secure/tinydtls/prng.h \
+	./wilddog-client-c/src/secure/tinydtls/rijndael.c \
+	./wilddog-client-c/src/secure/tinydtls/rijndael.h \
+	./wilddog-client-c/src/secure/tinydtls/session.c \
+	./wilddog-client-c/src/secure/tinydtls/session.h \
+	./wilddog-client-c/src/secure/tinydtls/sha2.c \
+	./wilddog-client-c/src/secure/tinydtls/sha2.h \
+	./wilddog-client-c/src/secure/tinydtls/state.h \
+	./wilddog-client-c/src/secure/tinydtls/t_list.h \
+	./wilddog-client-c/src/secure/tinydtls/tiny_platform.h \
+	./wilddog-client-c/src/secure/tinydtls/tinydtls.h \
+	./wilddog-client-c/src/secure/tinydtls/uthash.h \
+	./wilddog-client-c/src/secure/tinydtls/utlist.h \
+	./wilddog-client-c/src/secure/tinydtls/wilddog_conn_sec_dtls.c \
+	./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c \
+	./wilddog-client-c/src/serialize/cbor/wilddog_cbor.h \
+	./wilddog-client-c/include/wilddog.h \
+	./wilddog-client-c/include/wilddog_api.h \
+	./wilddog-client-c/include/wilddog_config.h \
+	./wilddog-client-c/include/wilddog_debug.h \
+	./wilddog-client-c/include/wilddog_port.h \
+	./wilddog-client-c/src/secure/dtls/lib/aes.c \
+	./wilddog-client-c/src/secure/dtls/lib/aesni.c \
+	./wilddog-client-c/src/secure/dtls/lib/asn1parse.c \
+	./wilddog-client-c/src/secure/dtls/lib/asn1write.c \
+	./wilddog-client-c/src/secure/dtls/lib/base64.c \
+	./wilddog-client-c/src/secure/dtls/lib/bignum.c \
+	./wilddog-client-c/src/secure/dtls/lib/blowfish.c \
+	./wilddog-client-c/src/secure/dtls/lib/ccm.c \
+	./wilddog-client-c/src/secure/dtls/lib/certs.c \
+	./wilddog-client-c/src/secure/dtls/lib/cipher.c \
+	./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c \
+	./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c \
+	./wilddog-client-c/src/secure/dtls/lib/debug.c \
+	./wilddog-client-c/src/secure/dtls/lib/dhm.c \
+	./wilddog-client-c/src/secure/dtls/lib/ecdh.c \
+	./wilddog-client-c/src/secure/dtls/lib/ecdsa.c \
+	./wilddog-client-c/src/secure/dtls/lib/ecp.c \
+	./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c \
+	./wilddog-client-c/src/secure/dtls/lib/entropy.c \
+	./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c \
+	./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c \
+	./wilddog-client-c/src/secure/dtls/lib/Makefile \
+	./wilddog-client-c/src/secure/dtls/lib/md5.c \
+	./wilddog-client-c/src/secure/dtls/lib/md.c \
+	./wilddog-client-c/src/secure/dtls/lib/md_wrap.c \
+	./wilddog-client-c/src/secure/dtls/lib/net.c \
+	./wilddog-client-c/src/secure/dtls/lib/oid.c \
+	./wilddog-client-c/src/secure/dtls/lib/pem.c \
+	./wilddog-client-c/src/secure/dtls/lib/pk.c \
+	./wilddog-client-c/src/secure/dtls/lib/pkcs12.c \
+	./wilddog-client-c/src/secure/dtls/lib/pkcs5.c \
+	./wilddog-client-c/src/secure/dtls/lib/pkparse.c \
+	./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c \
+	./wilddog-client-c/src/secure/dtls/lib/ripemd160.c \
+	./wilddog-client-c/src/secure/dtls/lib/rsa.c \
+	./wilddog-client-c/src/secure/dtls/lib/sha1.c \
+	./wilddog-client-c/src/secure/dtls/lib/sha256.c \
+	./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c \
+	./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c \
+	./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c \
+	./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c \
+	./wilddog-client-c/src/secure/dtls/lib/timing.c \
+	./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c \
+	./wilddog-client-c/src/secure/dtls/lib/x509.c \
+	./wilddog-client-c/src/secure/dtls/lib/x509_crt.c \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/aes.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/aesni.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/arc4.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1write.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/base64.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/bignum.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/blowfish.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/bn_mul.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/camellia.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ccm.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/certs.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/check_config.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher_wrap.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/compat-1.2.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/config_backup.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/config.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ctr_drbg.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/debug.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/des.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/dhm.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdh.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdsa.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ecp.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy_poll.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/error.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/gcm.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/havege.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/hmac_drbg.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/md2.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/md4.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/md5.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/md.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/md_wrap.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/memory_buffer_alloc.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/memory.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/net.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/oid.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/openssl.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/padlock.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pbkdf2.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pem.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs11.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs12.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs5.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pk.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/pk_wrap.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/polarssl_platform.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ripemd160.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/rsa.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/sha1.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/sha256.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/sha512.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cache.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_ciphersuites.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cookie.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/threading.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/timing.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/version.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crl.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crt.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_csr.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/x509.h \
+	./wilddog-client-c/src/secure/dtls/inc/polarssl/xtea.h \
+	./wilddog-client-c/src/secure/nosec/wilddog_nosec.c
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@am_libwilddog_a_OBJECTS =  \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_posix.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	performtest.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	ramtest.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_api.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_common.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_conn.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_ct.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_debug.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_event.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_node.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_sec_host.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_store.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_url_parser.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	option.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	pdu.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_conn_coap.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	tiny_ccm.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	crypto.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	tiny_debug.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	dtls.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	dtls_time.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	ecc.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	hmac.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	netq.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	peer.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	rijndael.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	session.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	sha2.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_conn_sec_dtls.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@	wilddog_cbor.$(OBJEXT)
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@am_libwilddog_a_OBJECTS =  \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_posix.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	performtest.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ramtest.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_api.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_common.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_conn.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_ct.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_debug.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_event.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_node.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_sec_host.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_store.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_url_parser.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	option.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pdu.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_conn_coap.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_cbor.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	aes.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	aesni.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	asn1parse.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	asn1write.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	base64.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	bignum.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	blowfish.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ccm.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	certs.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	cipher.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	cipher_wrap.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ctr_drbg.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	debug.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	dhm.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ecdh.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ecdsa.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ecp.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ecp_curves.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	entropy.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	entropy_poll.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	hmac_drbg.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	md5.$(OBJEXT) md.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	md_wrap.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	net.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	oid.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pem.$(OBJEXT) pk.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pkcs12.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pkcs5.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pkparse.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	pk_wrap.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ripemd160.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	rsa.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	sha1.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	sha256.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ssl_ciphersuites.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ssl_cli.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ssl_srv.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	ssl_tls.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	timing.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	wilddog_dtls.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	x509.$(OBJEXT) \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@	x509_crt.$(OBJEXT)
+@WITHOUT_DTLS_TRUE@am_libwilddog_a_OBJECTS = wilddog_posix.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	performtest.$(OBJEXT) ramtest.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_api.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_common.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_conn.$(OBJEXT) wilddog_ct.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_debug.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_event.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_node.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_sec_host.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_store.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_url_parser.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	option.$(OBJEXT) pdu.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_conn_coap.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_nosec.$(OBJEXT) \
+@WITHOUT_DTLS_TRUE@	wilddog_cbor.$(OBJEXT)
 libwilddog_a_OBJECTS = $(am_libwilddog_a_OBJECTS)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -86,7 +370,7 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libwilddog_a_SOURCES)
-DIST_SOURCES = $(libwilddog_a_SOURCES)
+DIST_SOURCES = $(am__libwilddog_a_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -97,6 +381,7 @@ CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
+APP_SEC_TYPE = @APP_SEC_TYPE@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -189,83 +474,283 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_LIBRARIES = libwilddog.a
-INCLUDES = -I $(top_srcdir)/../lib/wilddog-client-c/include -I $(top_srcdir)/../lib/wilddog-client-c/src -I $(top_srcdir)/../lib/wilddog-client-c/src/networking/coap -I ./wilddog-client-c/include -I ./wilddog-client-c/src -I ./wilddog-client-c/src/networking/coap
-libwilddog_a_SOURCES =  \
-	./wilddog-client-c/platform/linux/wilddog_posix.c \
-	./wilddog-client-c/src/performtest.c \
-	./wilddog-client-c/src/ramtest.c \
-	./wilddog-client-c/src/test_lib.h \
-	./wilddog-client-c/src/utlist.h \
-	./wilddog-client-c/src/wilddog_api.c \
-	./wilddog-client-c/src/wilddog_common.c \
-	./wilddog-client-c/src/wilddog_common.h \
-	./wilddog-client-c/src/wilddog_conn.c \
-	./wilddog-client-c/src/wilddog_conn.h \
-	./wilddog-client-c/src/wilddog_ct.c \
-	./wilddog-client-c/src/wilddog_ct.h \
-	./wilddog-client-c/src/wilddog_debug.c \
-	./wilddog-client-c/src/wilddog_endian.h \
-	./wilddog-client-c/src/wilddog_event.c \
-	./wilddog-client-c/src/wilddog_event.h \
-	./wilddog-client-c/src/wilddog_node.c \
-	./wilddog-client-c/src/wilddog_payload.h \
-	./wilddog-client-c/src/wilddog_sec.h \
-	./wilddog-client-c/src/wilddog_sec_host.c \
-	./wilddog-client-c/src/wilddog_sec_host.h \
-	./wilddog-client-c/src/wilddog_store.c \
-	./wilddog-client-c/src/wilddog_store.h \
-	./wilddog-client-c/src/wilddog_url_parser.c \
-	./wilddog-client-c/src/wilddog_url_parser.h \
-	./wilddog-client-c/src/networking/coap/bits.h \
-	./wilddog-client-c/src/networking/coap/option.c \
-	./wilddog-client-c/src/networking/coap/option.h \
-	./wilddog-client-c/src/networking/coap/pdu.c \
-	./wilddog-client-c/src/networking/coap/pdu.h \
-	./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c \
-	./wilddog-client-c/src/networking/coap/wilddog_conn_coap.h \
-	./wilddog-client-c/src/secure/tinydtls/alert.h \
-	./wilddog-client-c/src/secure/tinydtls/ccm.c \
-	./wilddog-client-c/src/secure/tinydtls/ccm.h \
-	./wilddog-client-c/src/secure/tinydtls/crypto.c \
-	./wilddog-client-c/src/secure/tinydtls/crypto.h \
-	./wilddog-client-c/src/secure/tinydtls/debug.c \
-	./wilddog-client-c/src/secure/tinydtls/debug.h \
-	./wilddog-client-c/src/secure/tinydtls/dtls.c \
-	./wilddog-client-c/src/secure/tinydtls/dtls.h \
-	./wilddog-client-c/src/secure/tinydtls/dtls_config.h \
-	./wilddog-client-c/src/secure/tinydtls/dtls_time.c \
-	./wilddog-client-c/src/secure/tinydtls/dtls_time.h \
-	./wilddog-client-c/src/secure/tinydtls/ecc.c \
-	./wilddog-client-c/src/secure/tinydtls/ecc.h \
-	./wilddog-client-c/src/secure/tinydtls/global.h \
-	./wilddog-client-c/src/secure/tinydtls/hmac.c \
-	./wilddog-client-c/src/secure/tinydtls/hmac.h \
-	./wilddog-client-c/src/secure/tinydtls/netq.c \
-	./wilddog-client-c/src/secure/tinydtls/netq.h \
-	./wilddog-client-c/src/secure/tinydtls/numeric.h \
-	./wilddog-client-c/src/secure/tinydtls/peer.c \
-	./wilddog-client-c/src/secure/tinydtls/peer.h \
-	./wilddog-client-c/src/secure/tinydtls/prng.h \
-	./wilddog-client-c/src/secure/tinydtls/rijndael.c \
-	./wilddog-client-c/src/secure/tinydtls/rijndael.h \
-	./wilddog-client-c/src/secure/tinydtls/session.c \
-	./wilddog-client-c/src/secure/tinydtls/session.h \
-	./wilddog-client-c/src/secure/tinydtls/sha2.c \
-	./wilddog-client-c/src/secure/tinydtls/sha2.h \
-	./wilddog-client-c/src/secure/tinydtls/state.h \
-	./wilddog-client-c/src/secure/tinydtls/t_list.h \
-	./wilddog-client-c/src/secure/tinydtls/tiny_platform.h \
-	./wilddog-client-c/src/secure/tinydtls/tinydtls.h \
-	./wilddog-client-c/src/secure/tinydtls/uthash.h \
-	./wilddog-client-c/src/secure/tinydtls/utlist.h \
-	./wilddog-client-c/src/secure/tinydtls/wilddog_conn_sec_dtls.c \
-	./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c \
-	./wilddog-client-c/src/serialize/cbor/wilddog_cbor.h \
-	./wilddog-client-c/include/wilddog.h \
-	./wilddog-client-c/include/wilddog_api.h \
-	./wilddog-client-c/include/wilddog_config.h \
-	./wilddog-client-c/include/wilddog_debug.h \
-	./wilddog-client-c/include/wilddog_port.h
+INCLUDES = -I $(top_srcdir)/../lib/wilddog-client-c/include -I \
+	$(top_srcdir)/../lib/wilddog-client-c/src -I \
+	$(top_srcdir)/../lib/wilddog-client-c/src/networking/coap -I \
+	./wilddog-client-c/include -I ./wilddog-client-c/src -I \
+	./wilddog-client-c/src/networking/coap $(am__append_1)
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@libwilddog_a_SOURCES = ./wilddog-client-c/platform/linux/wilddog_posix.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/performtest.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/ramtest.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/test_lib.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/utlist.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_api.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_common.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_common.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_conn.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_conn.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_ct.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_ct.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_debug.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_endian.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_event.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_event.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_node.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_payload.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_sec.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_sec_host.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_sec_host.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_store.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_store.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_url_parser.c  \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/wilddog_url_parser.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/bits.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/option.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/option.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/pdu.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/pdu.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/alert.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/ccm.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/crypto.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/crypto.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/tiny_debug.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/debug.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/dtls.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/dtls.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/dtls_config.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/dtls_time.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/dtls_time.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/ecc.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/ecc.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/global.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/hmac.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/hmac.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/netq.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/netq.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/numeric.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/peer.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/peer.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/prng.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/rijndael.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/rijndael.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/session.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/session.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/sha2.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/sha2.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/state.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/t_list.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/tiny_platform.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/tinydtls.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/uthash.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/utlist.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/secure/tinydtls/wilddog_conn_sec_dtls.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/include/wilddog.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/include/wilddog_api.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/include/wilddog_config.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/include/wilddog_debug.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@					 ./wilddog-client-c/include/wilddog_port.h
+
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@libwilddog_a_SOURCES = ./wilddog-client-c/platform/linux/wilddog_posix.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@                     ./wilddog-client-c/src/performtest.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/ramtest.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/test_lib.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/utlist.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_api.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_common.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_common.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_conn.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_conn.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_ct.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_ct.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_debug.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_endian.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_event.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_event.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_node.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_payload.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec_host.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec_host.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_store.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_store.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_url_parser.c  \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_url_parser.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/bits.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/option.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/option.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/pdu.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/pdu.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.h  \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_api.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_config.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_debug.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_port.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/aes.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/aesni.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/asn1parse.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/asn1write.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/base64.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/bignum.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/blowfish.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ccm.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/certs.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/cipher.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/debug.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/dhm.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ecdh.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ecdsa.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ecp.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/entropy.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/Makefile \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/md5.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/md.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/md_wrap.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/net.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/oid.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pem.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pk.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pkcs12.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pkcs5.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pkparse.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ripemd160.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/rsa.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/sha1.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/sha256.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/timing.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/x509.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/lib/x509_crt.c \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/aes.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/aesni.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/arc4.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1write.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/base64.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/bignum.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/blowfish.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/bn_mul.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/camellia.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ccm.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/certs.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/check_config.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher_wrap.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/compat-1.2.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/config_backup.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/config.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ctr_drbg.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/debug.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/des.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/dhm.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdh.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdsa.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecp.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy_poll.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/error.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/gcm.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/havege.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/hmac_drbg.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md2.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md4.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md5.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md_wrap.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/memory_buffer_alloc.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/memory.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/net.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/oid.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/openssl.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/padlock.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pbkdf2.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pem.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs11.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs12.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs5.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pk.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pk_wrap.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/polarssl_platform.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ripemd160.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/rsa.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha1.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha256.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha512.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cache.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_ciphersuites.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cookie.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/threading.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/timing.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/version.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crl.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crt.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_csr.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509.h \
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/xtea.h
+
+@WITHOUT_DTLS_TRUE@libwilddog_a_SOURCES = ./wilddog-client-c/platform/linux/wilddog_posix.c \
+@WITHOUT_DTLS_TRUE@                     ./wilddog-client-c/src/performtest.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/ramtest.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/test_lib.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/utlist.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_api.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_common.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_common.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_conn.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_conn.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_ct.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_ct.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_debug.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_endian.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_event.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_event.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_node.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_payload.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec_host.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_sec_host.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_store.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_store.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_url_parser.c  \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/wilddog_url_parser.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/bits.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/option.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/option.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/pdu.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/pdu.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/secure/nosec/wilddog_nosec.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_api.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_config.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_debug.h \
+@WITHOUT_DTLS_TRUE@					 ./wilddog-client-c/include/wilddog_port.h
+
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_FALSE@AM_CFLAGS = -DWILDDOG_PORT=5684 -fno-strict-aliasing
+@WITHOUT_DTLS_FALSE@@WITH_DTLS_TRUE@AM_CFLAGS = -DWILDDOG_PORT=5684
+@WITHOUT_DTLS_TRUE@AM_CFLAGS = -DWILDDOG_PORT=5683
 all: all-am
 
 .SUFFIXES:
@@ -279,9 +764,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign lib/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu lib/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign lib/Makefile
+	  $(AUTOMAKE) --gnu lib/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -314,22 +799,63 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aes.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/aesni.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/asn1parse.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/asn1write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/base64.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/bignum.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/blowfish.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ccm.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/certs.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cipher.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/cipher_wrap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/crypto.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ctr_drbg.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/debug.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dhm.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dtls.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dtls_time.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ecc.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ecdh.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ecdsa.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ecp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ecp_curves.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/entropy.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/entropy_poll.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hmac.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hmac_drbg.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/md.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/md5.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/md_wrap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/net.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/netq.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/oid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/option.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pdu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/peer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pem.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/performtest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pk.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pk_wrap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkcs12.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkcs5.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pkparse.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ramtest.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rijndael.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ripemd160.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/rsa.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/session.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sha1.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sha2.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/sha256.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ssl_ciphersuites.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ssl_cli.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ssl_srv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ssl_tls.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/timing.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tiny_ccm.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/tiny_debug.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_api.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_cbor.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_common.Po@am__quote@
@@ -338,12 +864,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_conn_sec_dtls.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_ct.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_debug.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_dtls.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_event.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_node.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_nosec.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_posix.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_sec_host.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_store.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wilddog_url_parser.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/x509.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/x509_crt.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -583,19 +1113,19 @@ wilddog_conn_coap.obj: ./wilddog-client-c/src/networking/coap/wilddog_conn_coap.
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_conn_coap.obj `if test -f './wilddog-client-c/src/networking/coap/wilddog_conn_coap.c'; then $(CYGPATH_W) './wilddog-client-c/src/networking/coap/wilddog_conn_coap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/networking/coap/wilddog_conn_coap.c'; fi`
 
-ccm.o: ./wilddog-client-c/src/secure/tinydtls/ccm.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ccm.o -MD -MP -MF $(DEPDIR)/ccm.Tpo -c -o ccm.o `test -f './wilddog-client-c/src/secure/tinydtls/ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/ccm.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ccm.Tpo $(DEPDIR)/ccm.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/ccm.c' object='ccm.o' libtool=no @AMDEPBACKSLASH@
+tiny_ccm.o: ./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tiny_ccm.o -MD -MP -MF $(DEPDIR)/tiny_ccm.Tpo -c -o tiny_ccm.o `test -f './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/tiny_ccm.Tpo $(DEPDIR)/tiny_ccm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c' object='tiny_ccm.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ccm.o `test -f './wilddog-client-c/src/secure/tinydtls/ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/ccm.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tiny_ccm.o `test -f './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c
 
-ccm.obj: ./wilddog-client-c/src/secure/tinydtls/ccm.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ccm.obj -MD -MP -MF $(DEPDIR)/ccm.Tpo -c -o ccm.obj `if test -f './wilddog-client-c/src/secure/tinydtls/ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/ccm.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ccm.Tpo $(DEPDIR)/ccm.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/ccm.c' object='ccm.obj' libtool=no @AMDEPBACKSLASH@
+tiny_ccm.obj: ./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tiny_ccm.obj -MD -MP -MF $(DEPDIR)/tiny_ccm.Tpo -c -o tiny_ccm.obj `if test -f './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/tiny_ccm.Tpo $(DEPDIR)/tiny_ccm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c' object='tiny_ccm.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ccm.obj `if test -f './wilddog-client-c/src/secure/tinydtls/ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/ccm.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tiny_ccm.obj `if test -f './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/tiny_ccm.c'; fi`
 
 crypto.o: ./wilddog-client-c/src/secure/tinydtls/crypto.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT crypto.o -MD -MP -MF $(DEPDIR)/crypto.Tpo -c -o crypto.o `test -f './wilddog-client-c/src/secure/tinydtls/crypto.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/crypto.c
@@ -611,19 +1141,19 @@ crypto.obj: ./wilddog-client-c/src/secure/tinydtls/crypto.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o crypto.obj `if test -f './wilddog-client-c/src/secure/tinydtls/crypto.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/crypto.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/crypto.c'; fi`
 
-debug.o: ./wilddog-client-c/src/secure/tinydtls/debug.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT debug.o -MD -MP -MF $(DEPDIR)/debug.Tpo -c -o debug.o `test -f './wilddog-client-c/src/secure/tinydtls/debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/debug.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/debug.Tpo $(DEPDIR)/debug.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/debug.c' object='debug.o' libtool=no @AMDEPBACKSLASH@
+tiny_debug.o: ./wilddog-client-c/src/secure/tinydtls/tiny_debug.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tiny_debug.o -MD -MP -MF $(DEPDIR)/tiny_debug.Tpo -c -o tiny_debug.o `test -f './wilddog-client-c/src/secure/tinydtls/tiny_debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/tiny_debug.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/tiny_debug.Tpo $(DEPDIR)/tiny_debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/tiny_debug.c' object='tiny_debug.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o debug.o `test -f './wilddog-client-c/src/secure/tinydtls/debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/debug.c
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tiny_debug.o `test -f './wilddog-client-c/src/secure/tinydtls/tiny_debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/tiny_debug.c
 
-debug.obj: ./wilddog-client-c/src/secure/tinydtls/debug.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT debug.obj -MD -MP -MF $(DEPDIR)/debug.Tpo -c -o debug.obj `if test -f './wilddog-client-c/src/secure/tinydtls/debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/debug.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/debug.Tpo $(DEPDIR)/debug.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/debug.c' object='debug.obj' libtool=no @AMDEPBACKSLASH@
+tiny_debug.obj: ./wilddog-client-c/src/secure/tinydtls/tiny_debug.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT tiny_debug.obj -MD -MP -MF $(DEPDIR)/tiny_debug.Tpo -c -o tiny_debug.obj `if test -f './wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/tiny_debug.Tpo $(DEPDIR)/tiny_debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/tinydtls/tiny_debug.c' object='tiny_debug.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o debug.obj `if test -f './wilddog-client-c/src/secure/tinydtls/debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/debug.c'; fi`
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o tiny_debug.obj `if test -f './wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/tinydtls/tiny_debug.c'; fi`
 
 dtls.o: ./wilddog-client-c/src/secure/tinydtls/dtls.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dtls.o -MD -MP -MF $(DEPDIR)/dtls.Tpo -c -o dtls.o `test -f './wilddog-client-c/src/secure/tinydtls/dtls.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/tinydtls/dtls.c
@@ -778,6 +1308,636 @@ wilddog_cbor.obj: ./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c' object='wilddog_cbor.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_cbor.obj `if test -f './wilddog-client-c/src/serialize/cbor/wilddog_cbor.c'; then $(CYGPATH_W) './wilddog-client-c/src/serialize/cbor/wilddog_cbor.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/serialize/cbor/wilddog_cbor.c'; fi`
+
+aes.o: ./wilddog-client-c/src/secure/dtls/lib/aes.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT aes.o -MD -MP -MF $(DEPDIR)/aes.Tpo -c -o aes.o `test -f './wilddog-client-c/src/secure/dtls/lib/aes.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/aes.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/aes.Tpo $(DEPDIR)/aes.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/aes.c' object='aes.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o aes.o `test -f './wilddog-client-c/src/secure/dtls/lib/aes.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/aes.c
+
+aes.obj: ./wilddog-client-c/src/secure/dtls/lib/aes.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT aes.obj -MD -MP -MF $(DEPDIR)/aes.Tpo -c -o aes.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/aes.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/aes.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/aes.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/aes.Tpo $(DEPDIR)/aes.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/aes.c' object='aes.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o aes.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/aes.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/aes.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/aes.c'; fi`
+
+aesni.o: ./wilddog-client-c/src/secure/dtls/lib/aesni.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT aesni.o -MD -MP -MF $(DEPDIR)/aesni.Tpo -c -o aesni.o `test -f './wilddog-client-c/src/secure/dtls/lib/aesni.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/aesni.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/aesni.Tpo $(DEPDIR)/aesni.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/aesni.c' object='aesni.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o aesni.o `test -f './wilddog-client-c/src/secure/dtls/lib/aesni.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/aesni.c
+
+aesni.obj: ./wilddog-client-c/src/secure/dtls/lib/aesni.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT aesni.obj -MD -MP -MF $(DEPDIR)/aesni.Tpo -c -o aesni.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/aesni.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/aesni.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/aesni.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/aesni.Tpo $(DEPDIR)/aesni.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/aesni.c' object='aesni.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o aesni.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/aesni.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/aesni.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/aesni.c'; fi`
+
+asn1parse.o: ./wilddog-client-c/src/secure/dtls/lib/asn1parse.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT asn1parse.o -MD -MP -MF $(DEPDIR)/asn1parse.Tpo -c -o asn1parse.o `test -f './wilddog-client-c/src/secure/dtls/lib/asn1parse.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/asn1parse.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/asn1parse.Tpo $(DEPDIR)/asn1parse.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/asn1parse.c' object='asn1parse.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o asn1parse.o `test -f './wilddog-client-c/src/secure/dtls/lib/asn1parse.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/asn1parse.c
+
+asn1parse.obj: ./wilddog-client-c/src/secure/dtls/lib/asn1parse.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT asn1parse.obj -MD -MP -MF $(DEPDIR)/asn1parse.Tpo -c -o asn1parse.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/asn1parse.Tpo $(DEPDIR)/asn1parse.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/asn1parse.c' object='asn1parse.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o asn1parse.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/asn1parse.c'; fi`
+
+asn1write.o: ./wilddog-client-c/src/secure/dtls/lib/asn1write.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT asn1write.o -MD -MP -MF $(DEPDIR)/asn1write.Tpo -c -o asn1write.o `test -f './wilddog-client-c/src/secure/dtls/lib/asn1write.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/asn1write.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/asn1write.Tpo $(DEPDIR)/asn1write.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/asn1write.c' object='asn1write.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o asn1write.o `test -f './wilddog-client-c/src/secure/dtls/lib/asn1write.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/asn1write.c
+
+asn1write.obj: ./wilddog-client-c/src/secure/dtls/lib/asn1write.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT asn1write.obj -MD -MP -MF $(DEPDIR)/asn1write.Tpo -c -o asn1write.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/asn1write.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/asn1write.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/asn1write.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/asn1write.Tpo $(DEPDIR)/asn1write.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/asn1write.c' object='asn1write.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o asn1write.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/asn1write.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/asn1write.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/asn1write.c'; fi`
+
+base64.o: ./wilddog-client-c/src/secure/dtls/lib/base64.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT base64.o -MD -MP -MF $(DEPDIR)/base64.Tpo -c -o base64.o `test -f './wilddog-client-c/src/secure/dtls/lib/base64.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/base64.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/base64.Tpo $(DEPDIR)/base64.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/base64.c' object='base64.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o base64.o `test -f './wilddog-client-c/src/secure/dtls/lib/base64.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/base64.c
+
+base64.obj: ./wilddog-client-c/src/secure/dtls/lib/base64.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT base64.obj -MD -MP -MF $(DEPDIR)/base64.Tpo -c -o base64.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/base64.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/base64.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/base64.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/base64.Tpo $(DEPDIR)/base64.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/base64.c' object='base64.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o base64.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/base64.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/base64.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/base64.c'; fi`
+
+bignum.o: ./wilddog-client-c/src/secure/dtls/lib/bignum.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT bignum.o -MD -MP -MF $(DEPDIR)/bignum.Tpo -c -o bignum.o `test -f './wilddog-client-c/src/secure/dtls/lib/bignum.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/bignum.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/bignum.Tpo $(DEPDIR)/bignum.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/bignum.c' object='bignum.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o bignum.o `test -f './wilddog-client-c/src/secure/dtls/lib/bignum.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/bignum.c
+
+bignum.obj: ./wilddog-client-c/src/secure/dtls/lib/bignum.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT bignum.obj -MD -MP -MF $(DEPDIR)/bignum.Tpo -c -o bignum.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/bignum.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/bignum.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/bignum.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/bignum.Tpo $(DEPDIR)/bignum.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/bignum.c' object='bignum.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o bignum.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/bignum.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/bignum.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/bignum.c'; fi`
+
+blowfish.o: ./wilddog-client-c/src/secure/dtls/lib/blowfish.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT blowfish.o -MD -MP -MF $(DEPDIR)/blowfish.Tpo -c -o blowfish.o `test -f './wilddog-client-c/src/secure/dtls/lib/blowfish.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/blowfish.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/blowfish.Tpo $(DEPDIR)/blowfish.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/blowfish.c' object='blowfish.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o blowfish.o `test -f './wilddog-client-c/src/secure/dtls/lib/blowfish.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/blowfish.c
+
+blowfish.obj: ./wilddog-client-c/src/secure/dtls/lib/blowfish.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT blowfish.obj -MD -MP -MF $(DEPDIR)/blowfish.Tpo -c -o blowfish.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/blowfish.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/blowfish.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/blowfish.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/blowfish.Tpo $(DEPDIR)/blowfish.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/blowfish.c' object='blowfish.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o blowfish.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/blowfish.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/blowfish.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/blowfish.c'; fi`
+
+ccm.o: ./wilddog-client-c/src/secure/dtls/lib/ccm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ccm.o -MD -MP -MF $(DEPDIR)/ccm.Tpo -c -o ccm.o `test -f './wilddog-client-c/src/secure/dtls/lib/ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ccm.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ccm.Tpo $(DEPDIR)/ccm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ccm.c' object='ccm.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ccm.o `test -f './wilddog-client-c/src/secure/dtls/lib/ccm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ccm.c
+
+ccm.obj: ./wilddog-client-c/src/secure/dtls/lib/ccm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ccm.obj -MD -MP -MF $(DEPDIR)/ccm.Tpo -c -o ccm.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ccm.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ccm.Tpo $(DEPDIR)/ccm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ccm.c' object='ccm.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ccm.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ccm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ccm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ccm.c'; fi`
+
+certs.o: ./wilddog-client-c/src/secure/dtls/lib/certs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT certs.o -MD -MP -MF $(DEPDIR)/certs.Tpo -c -o certs.o `test -f './wilddog-client-c/src/secure/dtls/lib/certs.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/certs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/certs.Tpo $(DEPDIR)/certs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/certs.c' object='certs.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o certs.o `test -f './wilddog-client-c/src/secure/dtls/lib/certs.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/certs.c
+
+certs.obj: ./wilddog-client-c/src/secure/dtls/lib/certs.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT certs.obj -MD -MP -MF $(DEPDIR)/certs.Tpo -c -o certs.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/certs.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/certs.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/certs.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/certs.Tpo $(DEPDIR)/certs.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/certs.c' object='certs.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o certs.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/certs.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/certs.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/certs.c'; fi`
+
+cipher.o: ./wilddog-client-c/src/secure/dtls/lib/cipher.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cipher.o -MD -MP -MF $(DEPDIR)/cipher.Tpo -c -o cipher.o `test -f './wilddog-client-c/src/secure/dtls/lib/cipher.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/cipher.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/cipher.Tpo $(DEPDIR)/cipher.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/cipher.c' object='cipher.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cipher.o `test -f './wilddog-client-c/src/secure/dtls/lib/cipher.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/cipher.c
+
+cipher.obj: ./wilddog-client-c/src/secure/dtls/lib/cipher.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cipher.obj -MD -MP -MF $(DEPDIR)/cipher.Tpo -c -o cipher.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/cipher.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/cipher.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/cipher.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/cipher.Tpo $(DEPDIR)/cipher.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/cipher.c' object='cipher.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cipher.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/cipher.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/cipher.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/cipher.c'; fi`
+
+cipher_wrap.o: ./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cipher_wrap.o -MD -MP -MF $(DEPDIR)/cipher_wrap.Tpo -c -o cipher_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/cipher_wrap.Tpo $(DEPDIR)/cipher_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c' object='cipher_wrap.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cipher_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c
+
+cipher_wrap.obj: ./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT cipher_wrap.obj -MD -MP -MF $(DEPDIR)/cipher_wrap.Tpo -c -o cipher_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/cipher_wrap.Tpo $(DEPDIR)/cipher_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c' object='cipher_wrap.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o cipher_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c'; fi`
+
+ctr_drbg.o: ./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ctr_drbg.o -MD -MP -MF $(DEPDIR)/ctr_drbg.Tpo -c -o ctr_drbg.o `test -f './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ctr_drbg.Tpo $(DEPDIR)/ctr_drbg.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c' object='ctr_drbg.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ctr_drbg.o `test -f './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c
+
+ctr_drbg.obj: ./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ctr_drbg.obj -MD -MP -MF $(DEPDIR)/ctr_drbg.Tpo -c -o ctr_drbg.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ctr_drbg.Tpo $(DEPDIR)/ctr_drbg.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c' object='ctr_drbg.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ctr_drbg.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c'; fi`
+
+debug.o: ./wilddog-client-c/src/secure/dtls/lib/debug.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT debug.o -MD -MP -MF $(DEPDIR)/debug.Tpo -c -o debug.o `test -f './wilddog-client-c/src/secure/dtls/lib/debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/debug.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/debug.Tpo $(DEPDIR)/debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/debug.c' object='debug.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o debug.o `test -f './wilddog-client-c/src/secure/dtls/lib/debug.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/debug.c
+
+debug.obj: ./wilddog-client-c/src/secure/dtls/lib/debug.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT debug.obj -MD -MP -MF $(DEPDIR)/debug.Tpo -c -o debug.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/debug.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/debug.Tpo $(DEPDIR)/debug.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/debug.c' object='debug.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o debug.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/debug.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/debug.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/debug.c'; fi`
+
+dhm.o: ./wilddog-client-c/src/secure/dtls/lib/dhm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dhm.o -MD -MP -MF $(DEPDIR)/dhm.Tpo -c -o dhm.o `test -f './wilddog-client-c/src/secure/dtls/lib/dhm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/dhm.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/dhm.Tpo $(DEPDIR)/dhm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/dhm.c' object='dhm.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dhm.o `test -f './wilddog-client-c/src/secure/dtls/lib/dhm.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/dhm.c
+
+dhm.obj: ./wilddog-client-c/src/secure/dtls/lib/dhm.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT dhm.obj -MD -MP -MF $(DEPDIR)/dhm.Tpo -c -o dhm.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/dhm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/dhm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/dhm.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/dhm.Tpo $(DEPDIR)/dhm.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/dhm.c' object='dhm.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dhm.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/dhm.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/dhm.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/dhm.c'; fi`
+
+ecdh.o: ./wilddog-client-c/src/secure/dtls/lib/ecdh.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecdh.o -MD -MP -MF $(DEPDIR)/ecdh.Tpo -c -o ecdh.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecdh.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecdh.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecdh.Tpo $(DEPDIR)/ecdh.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecdh.c' object='ecdh.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecdh.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecdh.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecdh.c
+
+ecdh.obj: ./wilddog-client-c/src/secure/dtls/lib/ecdh.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecdh.obj -MD -MP -MF $(DEPDIR)/ecdh.Tpo -c -o ecdh.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecdh.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecdh.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecdh.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecdh.Tpo $(DEPDIR)/ecdh.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecdh.c' object='ecdh.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecdh.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecdh.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecdh.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecdh.c'; fi`
+
+ecdsa.o: ./wilddog-client-c/src/secure/dtls/lib/ecdsa.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecdsa.o -MD -MP -MF $(DEPDIR)/ecdsa.Tpo -c -o ecdsa.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecdsa.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecdsa.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecdsa.Tpo $(DEPDIR)/ecdsa.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecdsa.c' object='ecdsa.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecdsa.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecdsa.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecdsa.c
+
+ecdsa.obj: ./wilddog-client-c/src/secure/dtls/lib/ecdsa.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecdsa.obj -MD -MP -MF $(DEPDIR)/ecdsa.Tpo -c -o ecdsa.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecdsa.Tpo $(DEPDIR)/ecdsa.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecdsa.c' object='ecdsa.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecdsa.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecdsa.c'; fi`
+
+ecp.o: ./wilddog-client-c/src/secure/dtls/lib/ecp.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecp.o -MD -MP -MF $(DEPDIR)/ecp.Tpo -c -o ecp.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecp.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecp.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecp.Tpo $(DEPDIR)/ecp.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecp.c' object='ecp.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecp.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecp.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecp.c
+
+ecp.obj: ./wilddog-client-c/src/secure/dtls/lib/ecp.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecp.obj -MD -MP -MF $(DEPDIR)/ecp.Tpo -c -o ecp.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecp.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecp.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecp.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecp.Tpo $(DEPDIR)/ecp.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecp.c' object='ecp.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecp.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecp.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecp.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecp.c'; fi`
+
+ecp_curves.o: ./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecp_curves.o -MD -MP -MF $(DEPDIR)/ecp_curves.Tpo -c -o ecp_curves.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecp_curves.Tpo $(DEPDIR)/ecp_curves.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c' object='ecp_curves.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecp_curves.o `test -f './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c
+
+ecp_curves.obj: ./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ecp_curves.obj -MD -MP -MF $(DEPDIR)/ecp_curves.Tpo -c -o ecp_curves.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ecp_curves.Tpo $(DEPDIR)/ecp_curves.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c' object='ecp_curves.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ecp_curves.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c'; fi`
+
+entropy.o: ./wilddog-client-c/src/secure/dtls/lib/entropy.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT entropy.o -MD -MP -MF $(DEPDIR)/entropy.Tpo -c -o entropy.o `test -f './wilddog-client-c/src/secure/dtls/lib/entropy.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/entropy.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/entropy.Tpo $(DEPDIR)/entropy.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/entropy.c' object='entropy.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o entropy.o `test -f './wilddog-client-c/src/secure/dtls/lib/entropy.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/entropy.c
+
+entropy.obj: ./wilddog-client-c/src/secure/dtls/lib/entropy.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT entropy.obj -MD -MP -MF $(DEPDIR)/entropy.Tpo -c -o entropy.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/entropy.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/entropy.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/entropy.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/entropy.Tpo $(DEPDIR)/entropy.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/entropy.c' object='entropy.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o entropy.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/entropy.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/entropy.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/entropy.c'; fi`
+
+entropy_poll.o: ./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT entropy_poll.o -MD -MP -MF $(DEPDIR)/entropy_poll.Tpo -c -o entropy_poll.o `test -f './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/entropy_poll.Tpo $(DEPDIR)/entropy_poll.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c' object='entropy_poll.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o entropy_poll.o `test -f './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c
+
+entropy_poll.obj: ./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT entropy_poll.obj -MD -MP -MF $(DEPDIR)/entropy_poll.Tpo -c -o entropy_poll.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/entropy_poll.Tpo $(DEPDIR)/entropy_poll.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c' object='entropy_poll.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o entropy_poll.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c'; fi`
+
+hmac_drbg.o: ./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hmac_drbg.o -MD -MP -MF $(DEPDIR)/hmac_drbg.Tpo -c -o hmac_drbg.o `test -f './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/hmac_drbg.Tpo $(DEPDIR)/hmac_drbg.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c' object='hmac_drbg.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hmac_drbg.o `test -f './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c
+
+hmac_drbg.obj: ./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT hmac_drbg.obj -MD -MP -MF $(DEPDIR)/hmac_drbg.Tpo -c -o hmac_drbg.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/hmac_drbg.Tpo $(DEPDIR)/hmac_drbg.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c' object='hmac_drbg.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o hmac_drbg.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c'; fi`
+
+md5.o: ./wilddog-client-c/src/secure/dtls/lib/md5.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md5.o -MD -MP -MF $(DEPDIR)/md5.Tpo -c -o md5.o `test -f './wilddog-client-c/src/secure/dtls/lib/md5.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md5.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md5.Tpo $(DEPDIR)/md5.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md5.c' object='md5.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md5.o `test -f './wilddog-client-c/src/secure/dtls/lib/md5.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md5.c
+
+md5.obj: ./wilddog-client-c/src/secure/dtls/lib/md5.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md5.obj -MD -MP -MF $(DEPDIR)/md5.Tpo -c -o md5.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md5.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md5.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md5.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md5.Tpo $(DEPDIR)/md5.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md5.c' object='md5.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md5.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md5.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md5.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md5.c'; fi`
+
+md.o: ./wilddog-client-c/src/secure/dtls/lib/md.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md.o -MD -MP -MF $(DEPDIR)/md.Tpo -c -o md.o `test -f './wilddog-client-c/src/secure/dtls/lib/md.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md.Tpo $(DEPDIR)/md.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md.c' object='md.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md.o `test -f './wilddog-client-c/src/secure/dtls/lib/md.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md.c
+
+md.obj: ./wilddog-client-c/src/secure/dtls/lib/md.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md.obj -MD -MP -MF $(DEPDIR)/md.Tpo -c -o md.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md.Tpo $(DEPDIR)/md.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md.c' object='md.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md.c'; fi`
+
+md_wrap.o: ./wilddog-client-c/src/secure/dtls/lib/md_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md_wrap.o -MD -MP -MF $(DEPDIR)/md_wrap.Tpo -c -o md_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/md_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md_wrap.Tpo $(DEPDIR)/md_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md_wrap.c' object='md_wrap.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/md_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/md_wrap.c
+
+md_wrap.obj: ./wilddog-client-c/src/secure/dtls/lib/md_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT md_wrap.obj -MD -MP -MF $(DEPDIR)/md_wrap.Tpo -c -o md_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/md_wrap.Tpo $(DEPDIR)/md_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/md_wrap.c' object='md_wrap.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o md_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/md_wrap.c'; fi`
+
+net.o: ./wilddog-client-c/src/secure/dtls/lib/net.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT net.o -MD -MP -MF $(DEPDIR)/net.Tpo -c -o net.o `test -f './wilddog-client-c/src/secure/dtls/lib/net.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/net.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/net.Tpo $(DEPDIR)/net.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/net.c' object='net.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o net.o `test -f './wilddog-client-c/src/secure/dtls/lib/net.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/net.c
+
+net.obj: ./wilddog-client-c/src/secure/dtls/lib/net.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT net.obj -MD -MP -MF $(DEPDIR)/net.Tpo -c -o net.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/net.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/net.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/net.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/net.Tpo $(DEPDIR)/net.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/net.c' object='net.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o net.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/net.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/net.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/net.c'; fi`
+
+oid.o: ./wilddog-client-c/src/secure/dtls/lib/oid.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT oid.o -MD -MP -MF $(DEPDIR)/oid.Tpo -c -o oid.o `test -f './wilddog-client-c/src/secure/dtls/lib/oid.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/oid.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/oid.Tpo $(DEPDIR)/oid.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/oid.c' object='oid.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o oid.o `test -f './wilddog-client-c/src/secure/dtls/lib/oid.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/oid.c
+
+oid.obj: ./wilddog-client-c/src/secure/dtls/lib/oid.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT oid.obj -MD -MP -MF $(DEPDIR)/oid.Tpo -c -o oid.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/oid.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/oid.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/oid.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/oid.Tpo $(DEPDIR)/oid.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/oid.c' object='oid.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o oid.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/oid.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/oid.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/oid.c'; fi`
+
+pem.o: ./wilddog-client-c/src/secure/dtls/lib/pem.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pem.o -MD -MP -MF $(DEPDIR)/pem.Tpo -c -o pem.o `test -f './wilddog-client-c/src/secure/dtls/lib/pem.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pem.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pem.Tpo $(DEPDIR)/pem.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pem.c' object='pem.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pem.o `test -f './wilddog-client-c/src/secure/dtls/lib/pem.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pem.c
+
+pem.obj: ./wilddog-client-c/src/secure/dtls/lib/pem.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pem.obj -MD -MP -MF $(DEPDIR)/pem.Tpo -c -o pem.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pem.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pem.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pem.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pem.Tpo $(DEPDIR)/pem.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pem.c' object='pem.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pem.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pem.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pem.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pem.c'; fi`
+
+pk.o: ./wilddog-client-c/src/secure/dtls/lib/pk.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pk.o -MD -MP -MF $(DEPDIR)/pk.Tpo -c -o pk.o `test -f './wilddog-client-c/src/secure/dtls/lib/pk.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pk.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pk.Tpo $(DEPDIR)/pk.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pk.c' object='pk.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pk.o `test -f './wilddog-client-c/src/secure/dtls/lib/pk.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pk.c
+
+pk.obj: ./wilddog-client-c/src/secure/dtls/lib/pk.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pk.obj -MD -MP -MF $(DEPDIR)/pk.Tpo -c -o pk.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pk.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pk.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pk.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pk.Tpo $(DEPDIR)/pk.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pk.c' object='pk.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pk.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pk.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pk.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pk.c'; fi`
+
+pkcs12.o: ./wilddog-client-c/src/secure/dtls/lib/pkcs12.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkcs12.o -MD -MP -MF $(DEPDIR)/pkcs12.Tpo -c -o pkcs12.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkcs12.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkcs12.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcs12.Tpo $(DEPDIR)/pkcs12.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkcs12.c' object='pkcs12.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkcs12.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkcs12.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkcs12.c
+
+pkcs12.obj: ./wilddog-client-c/src/secure/dtls/lib/pkcs12.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkcs12.obj -MD -MP -MF $(DEPDIR)/pkcs12.Tpo -c -o pkcs12.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcs12.Tpo $(DEPDIR)/pkcs12.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkcs12.c' object='pkcs12.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkcs12.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkcs12.c'; fi`
+
+pkcs5.o: ./wilddog-client-c/src/secure/dtls/lib/pkcs5.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkcs5.o -MD -MP -MF $(DEPDIR)/pkcs5.Tpo -c -o pkcs5.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkcs5.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkcs5.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcs5.Tpo $(DEPDIR)/pkcs5.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkcs5.c' object='pkcs5.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkcs5.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkcs5.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkcs5.c
+
+pkcs5.obj: ./wilddog-client-c/src/secure/dtls/lib/pkcs5.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkcs5.obj -MD -MP -MF $(DEPDIR)/pkcs5.Tpo -c -o pkcs5.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkcs5.Tpo $(DEPDIR)/pkcs5.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkcs5.c' object='pkcs5.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkcs5.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkcs5.c'; fi`
+
+pkparse.o: ./wilddog-client-c/src/secure/dtls/lib/pkparse.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkparse.o -MD -MP -MF $(DEPDIR)/pkparse.Tpo -c -o pkparse.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkparse.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkparse.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkparse.Tpo $(DEPDIR)/pkparse.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkparse.c' object='pkparse.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkparse.o `test -f './wilddog-client-c/src/secure/dtls/lib/pkparse.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pkparse.c
+
+pkparse.obj: ./wilddog-client-c/src/secure/dtls/lib/pkparse.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pkparse.obj -MD -MP -MF $(DEPDIR)/pkparse.Tpo -c -o pkparse.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkparse.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkparse.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkparse.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pkparse.Tpo $(DEPDIR)/pkparse.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pkparse.c' object='pkparse.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pkparse.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pkparse.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pkparse.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pkparse.c'; fi`
+
+pk_wrap.o: ./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pk_wrap.o -MD -MP -MF $(DEPDIR)/pk_wrap.Tpo -c -o pk_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pk_wrap.Tpo $(DEPDIR)/pk_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c' object='pk_wrap.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pk_wrap.o `test -f './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c
+
+pk_wrap.obj: ./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT pk_wrap.obj -MD -MP -MF $(DEPDIR)/pk_wrap.Tpo -c -o pk_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/pk_wrap.Tpo $(DEPDIR)/pk_wrap.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c' object='pk_wrap.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o pk_wrap.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/pk_wrap.c'; fi`
+
+ripemd160.o: ./wilddog-client-c/src/secure/dtls/lib/ripemd160.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ripemd160.o -MD -MP -MF $(DEPDIR)/ripemd160.Tpo -c -o ripemd160.o `test -f './wilddog-client-c/src/secure/dtls/lib/ripemd160.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ripemd160.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ripemd160.Tpo $(DEPDIR)/ripemd160.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ripemd160.c' object='ripemd160.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ripemd160.o `test -f './wilddog-client-c/src/secure/dtls/lib/ripemd160.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ripemd160.c
+
+ripemd160.obj: ./wilddog-client-c/src/secure/dtls/lib/ripemd160.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ripemd160.obj -MD -MP -MF $(DEPDIR)/ripemd160.Tpo -c -o ripemd160.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ripemd160.Tpo $(DEPDIR)/ripemd160.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ripemd160.c' object='ripemd160.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ripemd160.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ripemd160.c'; fi`
+
+rsa.o: ./wilddog-client-c/src/secure/dtls/lib/rsa.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT rsa.o -MD -MP -MF $(DEPDIR)/rsa.Tpo -c -o rsa.o `test -f './wilddog-client-c/src/secure/dtls/lib/rsa.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/rsa.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/rsa.Tpo $(DEPDIR)/rsa.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/rsa.c' object='rsa.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o rsa.o `test -f './wilddog-client-c/src/secure/dtls/lib/rsa.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/rsa.c
+
+rsa.obj: ./wilddog-client-c/src/secure/dtls/lib/rsa.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT rsa.obj -MD -MP -MF $(DEPDIR)/rsa.Tpo -c -o rsa.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/rsa.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/rsa.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/rsa.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/rsa.Tpo $(DEPDIR)/rsa.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/rsa.c' object='rsa.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o rsa.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/rsa.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/rsa.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/rsa.c'; fi`
+
+sha1.o: ./wilddog-client-c/src/secure/dtls/lib/sha1.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sha1.o -MD -MP -MF $(DEPDIR)/sha1.Tpo -c -o sha1.o `test -f './wilddog-client-c/src/secure/dtls/lib/sha1.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/sha1.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/sha1.Tpo $(DEPDIR)/sha1.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/sha1.c' object='sha1.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sha1.o `test -f './wilddog-client-c/src/secure/dtls/lib/sha1.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/sha1.c
+
+sha1.obj: ./wilddog-client-c/src/secure/dtls/lib/sha1.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sha1.obj -MD -MP -MF $(DEPDIR)/sha1.Tpo -c -o sha1.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/sha1.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/sha1.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/sha1.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/sha1.Tpo $(DEPDIR)/sha1.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/sha1.c' object='sha1.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sha1.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/sha1.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/sha1.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/sha1.c'; fi`
+
+sha256.o: ./wilddog-client-c/src/secure/dtls/lib/sha256.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sha256.o -MD -MP -MF $(DEPDIR)/sha256.Tpo -c -o sha256.o `test -f './wilddog-client-c/src/secure/dtls/lib/sha256.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/sha256.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/sha256.Tpo $(DEPDIR)/sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/sha256.c' object='sha256.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sha256.o `test -f './wilddog-client-c/src/secure/dtls/lib/sha256.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/sha256.c
+
+sha256.obj: ./wilddog-client-c/src/secure/dtls/lib/sha256.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sha256.obj -MD -MP -MF $(DEPDIR)/sha256.Tpo -c -o sha256.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/sha256.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/sha256.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/sha256.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/sha256.Tpo $(DEPDIR)/sha256.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/sha256.c' object='sha256.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sha256.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/sha256.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/sha256.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/sha256.c'; fi`
+
+ssl_ciphersuites.o: ./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_ciphersuites.o -MD -MP -MF $(DEPDIR)/ssl_ciphersuites.Tpo -c -o ssl_ciphersuites.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_ciphersuites.Tpo $(DEPDIR)/ssl_ciphersuites.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c' object='ssl_ciphersuites.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_ciphersuites.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c
+
+ssl_ciphersuites.obj: ./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_ciphersuites.obj -MD -MP -MF $(DEPDIR)/ssl_ciphersuites.Tpo -c -o ssl_ciphersuites.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_ciphersuites.Tpo $(DEPDIR)/ssl_ciphersuites.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c' object='ssl_ciphersuites.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_ciphersuites.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_ciphersuites.c'; fi`
+
+ssl_cli.o: ./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_cli.o -MD -MP -MF $(DEPDIR)/ssl_cli.Tpo -c -o ssl_cli.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_cli.Tpo $(DEPDIR)/ssl_cli.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c' object='ssl_cli.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_cli.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c
+
+ssl_cli.obj: ./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_cli.obj -MD -MP -MF $(DEPDIR)/ssl_cli.Tpo -c -o ssl_cli.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_cli.Tpo $(DEPDIR)/ssl_cli.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c' object='ssl_cli.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_cli.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_cli.c'; fi`
+
+ssl_srv.o: ./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_srv.o -MD -MP -MF $(DEPDIR)/ssl_srv.Tpo -c -o ssl_srv.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_srv.Tpo $(DEPDIR)/ssl_srv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c' object='ssl_srv.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_srv.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c
+
+ssl_srv.obj: ./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_srv.obj -MD -MP -MF $(DEPDIR)/ssl_srv.Tpo -c -o ssl_srv.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_srv.Tpo $(DEPDIR)/ssl_srv.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c' object='ssl_srv.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_srv.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_srv.c'; fi`
+
+ssl_tls.o: ./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_tls.o -MD -MP -MF $(DEPDIR)/ssl_tls.Tpo -c -o ssl_tls.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_tls.Tpo $(DEPDIR)/ssl_tls.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c' object='ssl_tls.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_tls.o `test -f './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c
+
+ssl_tls.obj: ./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT ssl_tls.obj -MD -MP -MF $(DEPDIR)/ssl_tls.Tpo -c -o ssl_tls.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/ssl_tls.Tpo $(DEPDIR)/ssl_tls.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c' object='ssl_tls.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o ssl_tls.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/ssl_tls.c'; fi`
+
+timing.o: ./wilddog-client-c/src/secure/dtls/lib/timing.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT timing.o -MD -MP -MF $(DEPDIR)/timing.Tpo -c -o timing.o `test -f './wilddog-client-c/src/secure/dtls/lib/timing.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/timing.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/timing.Tpo $(DEPDIR)/timing.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/timing.c' object='timing.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o timing.o `test -f './wilddog-client-c/src/secure/dtls/lib/timing.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/timing.c
+
+timing.obj: ./wilddog-client-c/src/secure/dtls/lib/timing.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT timing.obj -MD -MP -MF $(DEPDIR)/timing.Tpo -c -o timing.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/timing.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/timing.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/timing.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/timing.Tpo $(DEPDIR)/timing.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/timing.c' object='timing.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o timing.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/timing.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/timing.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/timing.c'; fi`
+
+wilddog_dtls.o: ./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wilddog_dtls.o -MD -MP -MF $(DEPDIR)/wilddog_dtls.Tpo -c -o wilddog_dtls.o `test -f './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/wilddog_dtls.Tpo $(DEPDIR)/wilddog_dtls.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c' object='wilddog_dtls.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_dtls.o `test -f './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c
+
+wilddog_dtls.obj: ./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wilddog_dtls.obj -MD -MP -MF $(DEPDIR)/wilddog_dtls.Tpo -c -o wilddog_dtls.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/wilddog_dtls.Tpo $(DEPDIR)/wilddog_dtls.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c' object='wilddog_dtls.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_dtls.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c'; fi`
+
+x509.o: ./wilddog-client-c/src/secure/dtls/lib/x509.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT x509.o -MD -MP -MF $(DEPDIR)/x509.Tpo -c -o x509.o `test -f './wilddog-client-c/src/secure/dtls/lib/x509.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/x509.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/x509.Tpo $(DEPDIR)/x509.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/x509.c' object='x509.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o x509.o `test -f './wilddog-client-c/src/secure/dtls/lib/x509.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/x509.c
+
+x509.obj: ./wilddog-client-c/src/secure/dtls/lib/x509.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT x509.obj -MD -MP -MF $(DEPDIR)/x509.Tpo -c -o x509.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/x509.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/x509.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/x509.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/x509.Tpo $(DEPDIR)/x509.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/x509.c' object='x509.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o x509.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/x509.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/x509.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/x509.c'; fi`
+
+x509_crt.o: ./wilddog-client-c/src/secure/dtls/lib/x509_crt.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT x509_crt.o -MD -MP -MF $(DEPDIR)/x509_crt.Tpo -c -o x509_crt.o `test -f './wilddog-client-c/src/secure/dtls/lib/x509_crt.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/x509_crt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/x509_crt.Tpo $(DEPDIR)/x509_crt.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/x509_crt.c' object='x509_crt.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o x509_crt.o `test -f './wilddog-client-c/src/secure/dtls/lib/x509_crt.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/dtls/lib/x509_crt.c
+
+x509_crt.obj: ./wilddog-client-c/src/secure/dtls/lib/x509_crt.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT x509_crt.obj -MD -MP -MF $(DEPDIR)/x509_crt.Tpo -c -o x509_crt.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/x509_crt.Tpo $(DEPDIR)/x509_crt.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/dtls/lib/x509_crt.c' object='x509_crt.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o x509_crt.obj `if test -f './wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/dtls/lib/x509_crt.c'; fi`
+
+wilddog_nosec.o: ./wilddog-client-c/src/secure/nosec/wilddog_nosec.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wilddog_nosec.o -MD -MP -MF $(DEPDIR)/wilddog_nosec.Tpo -c -o wilddog_nosec.o `test -f './wilddog-client-c/src/secure/nosec/wilddog_nosec.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/nosec/wilddog_nosec.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/wilddog_nosec.Tpo $(DEPDIR)/wilddog_nosec.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/nosec/wilddog_nosec.c' object='wilddog_nosec.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_nosec.o `test -f './wilddog-client-c/src/secure/nosec/wilddog_nosec.c' || echo '$(srcdir)/'`./wilddog-client-c/src/secure/nosec/wilddog_nosec.c
+
+wilddog_nosec.obj: ./wilddog-client-c/src/secure/nosec/wilddog_nosec.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT wilddog_nosec.obj -MD -MP -MF $(DEPDIR)/wilddog_nosec.Tpo -c -o wilddog_nosec.obj `if test -f './wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/wilddog_nosec.Tpo $(DEPDIR)/wilddog_nosec.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='./wilddog-client-c/src/secure/nosec/wilddog_nosec.c' object='wilddog_nosec.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o wilddog_nosec.obj `if test -f './wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; then $(CYGPATH_W) './wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; else $(CYGPATH_W) '$(srcdir)/./wilddog-client-c/src/secure/nosec/wilddog_nosec.c'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

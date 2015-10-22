@@ -25,7 +25,56 @@
 #include "wilddog.h"
 
 
-#define  LIVESHELL_VERSION	"1.3" 
+#define  LIVESHELL_VERSION	"1.4" 
+
+STATIC void auth_callback
+    (
+        void* arg,
+        Wilddog_Return_T err
+    )
+{
+    *(BOOL*)arg = TRUE;
+    if(err < WILDDOG_HTTP_OK || err >= WILDDOG_HTTP_NOT_MODIFIED)
+    {
+        wilddog_debug("auth failed!;error =%d \n",err);
+        return;
+    }
+}
+
+
+Wilddog_Str_T * getHostFromUrl(Wilddog_Str_T *url)
+{
+	int length = 0;
+	int m = 0, n = 0;
+	int i = 0;
+	Wilddog_Str_T *host = NULL;
+
+	length = strlen(url);
+	for(i = 0; i < length; i++)
+	{
+		if(*(url+i) == '/' && *(url+i+1) == '/')
+			break;
+	}
+
+	m = i+2;
+
+	for(i = m; i < length; i++)
+	{
+		if(*(url+i) == '/')
+			break;
+	}
+	n = i-1;
+
+	host = wmalloc(n-m+2);
+	if(NULL == host)
+	{
+		
+	}
+
+	strncpy(host, url+m, n-m+1);
+	return host;
+}
+
 
 typedef struct _watch_ctx
 {
@@ -145,6 +194,7 @@ STATIC void observer_callback
     return;
 }
 
+
 int main(int argc, char **argv) 
 {
     char url[1024];
@@ -152,12 +202,14 @@ int main(int argc, char **argv)
     char data[32];
     char verbose[32];
     char quote[32];
+    char authvalue[256];
     
     BOOL isFinished = FALSE;
-    Wilddog_T wilddog;
+    Wilddog_T wilddog = 0;
     int opt;
     int option_index = 0;
     WATCH_CTX watch_ctx;
+    char *host = NULL;
     
     memset(url,0,sizeof(url));  
     memset(cmd,0,sizeof(cmd));
@@ -167,6 +219,7 @@ int main(int argc, char **argv)
     memcpy(verbose, "no",strlen("no"));
     memset(quote,0,sizeof(quote));
     memcpy(quote, "yes",strlen("yes"));
+    memset(authvalue,0,sizeof(authvalue));
 	
     static struct option long_options[] = 
     {
@@ -174,6 +227,7 @@ int main(int argc, char **argv)
         {"verbose", required_argument, 0,  0},
         {"ignore-leaf-quote", required_argument, 0,  0},
         {"version", no_argument, 0,  0},
+        {"authvalue", required_argument, 0,  0},
         {0,         0,                 0,  0 }
     };
 
@@ -191,6 +245,8 @@ int main(int argc, char **argv)
                     memcpy(verbose, optarg,strlen(optarg));
                 if(strcmp(long_options[option_index].name,"ignore-leaf-quote")==0)
                     memcpy(quote, optarg,strlen(optarg));
+                if(strcmp(long_options[option_index].name,"authvalue")==0)
+                    memcpy(authvalue, optarg,strlen(optarg));
             }
 	    if(strcmp(long_options[option_index].name,"version")==0)
 	    {
@@ -209,20 +265,20 @@ int main(int argc, char **argv)
 	    break;
 		
         case 'h':
-            fprintf(stderr, "Usage: %s [option] <your wilddog url> <your callback command>\n",
+            fprintf(stderr, "Usage: %s [option] [--authvalue= your auth data] <your wilddog url>  <your callback command> \n",
                    argv[0]);
             return 0;
         default: /* '?' */
-            fprintf(stderr, "Usage: %s [option] <your wilddog url> <your callback command>\n",
+            fprintf(stderr, "Usage: %s [option] [--authvalue= your auth data] <your wilddog url>  <your callback command> \n",
                    argv[0]);
             return 0;
         }
     }
 	
 
-    if( argc <3 )
+    if( argc < 3 )
     {
-        printf("Usage: %s [option] <your wilddog url> <your callback command>\n", argv[0]);
+        printf("Usage: %s [option] [--authvalue= your auth data] <your wilddog url>  <your callback command> \n", argv[0]);
         return 0;
     }
 	
@@ -236,7 +292,15 @@ int main(int argc, char **argv)
         wilddog_debug("new wilddog failed!");
         return 0;
     }
-
+    if(strlen(authvalue) != 0)
+    {
+	    host = getHostFromUrl(url);
+	    //printf("host:%s\n", host);
+	    //printf("authvalue:%s\n", authvalue);
+	    wilddog_auth((u8*)host,(u8*)authvalue,strlen((const char *)authvalue),auth_callback,(void*)&isFinished);
+    }
+    
+    isFinished = FALSE;
     watch_ctx.cmd = cmd;
     watch_ctx.data = data;
     watch_ctx.verbose = verbose;
@@ -255,6 +319,7 @@ int main(int argc, char **argv)
         }
         wilddog_trySync();
     }
+    wfree(host);
     wilddog_destroy(&wilddog);
     
     return 0;

@@ -97,6 +97,9 @@
 	
 	-h 打印帮助信息
 	
+	--version 打印版本号
+
+	--authvalue=<your auth data> 传入auth数据（如超级密钥、token等）
 #####6. 例子
 
 ######利用wget下载文件

@@ -39,9 +39,9 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 
 #####3.使用
 
-	liveshell  [option] [--authvalue=your auth data] <your wilddog url> <your callback command>
+	liveshell  [option] <your wilddog url> <your callback command>
 
-#####4. 参数说明
+#####4. option参数说明
 
 	-o 获取到原始数据也会触发一次command回调
 
@@ -53,7 +53,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 
 	--version 打印版本号
 
-	--authvalue=your auth data 传入auth数据
+	--authvalue=<your auth data> 传入auth数据（如超级密钥、token等）
 	
 #####5. 例子
 
@@ -71,6 +71,6 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 
 3. 终端的显示结果等同于在终端运行"ls /"，修改云端数据，把"/"改为"-l /"，在终端立刻显示"ls -l /"的结果；类似的，你也可以将<your callback command>改为shell脚本，执行更加复杂的操作。
 
-4. 在传入auth的情况下，我们可以先将安全规则中的读写权限配置为false，这样在auth正确的条件下，依旧可以正常读写。
+4. 在传入auth数据的情况下，我们可以将云端安全规则中的读写权限配置为false，这样只有在auth正确的条件下，才可以读写。
 
 		liveshell -ov --authvalue=XXXXXXXEFAHYAUDAF1SACfEXXXXXXX coaps://<your Appid>.wilddogio.com/path ls

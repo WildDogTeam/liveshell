@@ -53,7 +53,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 
 	--version 打印版本号
 
-    --authvalue=your auth data 传入auth数据
+	--authvalue=your auth data 传入auth数据
 	
 #####5. 例子
 

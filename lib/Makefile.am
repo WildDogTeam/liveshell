@@ -87,17 +87,20 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/include/wilddog_port.h \
 					 ./wilddog-client-c/src/secure/dtls/lib/aes.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/aesni.c \
+					 ./wilddog-client-c/src/secure/dtls/lib/arc4.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/asn1parse.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/asn1write.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/base64.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/bignum.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/blowfish.c \
+					 ./wilddog-client-c/src/secure/dtls/lib/camellia.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/ccm.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/certs.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/cipher.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/cipher_wrap.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/ctr_drbg.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/debug.c \
+					 ./wilddog-client-c/src/secure/dtls/lib/des.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/dhm.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/ecdh.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/ecdsa.c \
@@ -105,13 +108,14 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/ecp_curves.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/entropy.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/entropy_poll.c \
+					 ./wilddog-client-c/src/secure/dtls/lib/gcm.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/hmac_drbg.c \
-					 ./wilddog-client-c/src/secure/dtls/lib/Makefile \
 					 ./wilddog-client-c/src/secure/dtls/lib/md5.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/md.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/md_wrap.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/net.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/oid.c \
+					 ./wilddog-client-c/src/secure/dtls/lib/padlock.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/pem.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/pk.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/pkcs12.c \
@@ -130,73 +134,71 @@ libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/wilddog_dtls.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/x509.c \
 					 ./wilddog-client-c/src/secure/dtls/lib/x509_crt.c \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/aes.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/aesni.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/arc4.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/asn1write.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/base64.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/bignum.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/blowfish.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/bn_mul.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/camellia.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ccm.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/certs.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/check_config.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/cipher_wrap.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/compat-1.2.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/config_backup.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/config.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ctr_drbg.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/debug.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/des.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/dhm.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdh.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecdsa.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ecp.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/entropy_poll.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/error.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/gcm.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/havege.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/hmac_drbg.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md2.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md4.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md5.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/md_wrap.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/memory_buffer_alloc.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/memory.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/net.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/oid.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/openssl.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/padlock.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pbkdf2.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pem.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs11.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs12.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pkcs5.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pk.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/pk_wrap.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/polarssl_platform.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ripemd160.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/rsa.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha1.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha256.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/sha512.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cache.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_ciphersuites.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl_cookie.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/ssl.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/threading.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/timing.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/version.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crl.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_crt.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509_csr.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/x509.h \
-					 ./wilddog-client-c/src/secure/dtls/inc/polarssl/xtea.h
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/aes.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/aesni.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/arc4.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/asn1.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/asn1write.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/base64.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/bignum.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/blowfish.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/bn_mul.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/camellia.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ccm.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/certs.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/check_config.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/cipher.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/cipher_internal.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/compat-1.3.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/config.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ctr_drbg.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/debug.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/des.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/dhm.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ecdh.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ecdsa.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ecp.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/entropy.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/entropy_poll.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/error.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/gcm.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/havege.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/hmac_drbg.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/md2.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/md4.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/md5.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/md.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/md_internal.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/memory_buffer_alloc.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/net.h \
+				 	 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/oid.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/padlock.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pem.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pkcs11.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pkcs12.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pkcs5.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pk.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/pk_internal.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/platform.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ripemd160.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/rsa.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/sha1.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/sha256.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/sha512.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl_cache.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl_ciphersuites.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl_cookie.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl_internal.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/ssl_ticket.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/threading.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/timing.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/version.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/x509_crl.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/x509_crt.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/x509_csr.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/x509.h \
+					 ./wilddog-client-c/src/secure/dtls/inc/mbedtls/xtea.h
 AM_CFLAGS=-DWILDDOG_PORT=5684
 else
 libwilddog_a_SOURCES=./wilddog-client-c/platform/linux/wilddog_posix.c \

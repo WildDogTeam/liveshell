@@ -11,7 +11,7 @@
 	cd liveshell	
 	git submodule update --init --recursive
 
-#####2. 生成liveshell-1.2.tar.gz安装包
+#####2. 生成liveshell-1.4.tar.gz安装包(注意使用实际的版本号)
 注意权限，可能需要root权限
 
 	./configure
@@ -19,7 +19,7 @@
 
 #####3. 在Openwrt下制作ipk并安装
 
-1. 将步骤2中生成的`liveshell-1.2.tar.gz`拷贝到Openwrt根目录下的dl目录中；
+1. 将步骤2中生成的`liveshell-1.4.tar.gz`拷贝到Openwrt根目录下的dl目录中；
 
 2. 在Openwrt添加liveshell包，在Openwrt的根目录下；
 
@@ -32,7 +32,7 @@
 
 		include $(TOPDIR)/rules.mk
 		PKG_NAME:=liveshell
-		PKG_VERSION:=1.2
+		PKG_VERSION:=1.4
 		PKG_RELEASE:=1
 	
 	
@@ -76,11 +76,11 @@
 		
 	- `define Package/liveshell`中的`CATEGORY:=Utilities`表明在`make menuconfig`中的`Utilities`选项中可以找到liveshell。
 	
-	- `define Build/Configure`中的`$(call Build/Configure/Default,--with-sectype=dtls)`配置了liveshell的安全类型，有三种类型可以选择：`nosec`，`tinydtls`和`dtls`。
+	- `define Build/Configure`中的`$(call Build/Configure/Default,--with-sectype=dtls)`配置了liveshell的安全类型，有三种类型可以选择：`nosec`和`tinydtls`。
 
-3. 在`make menuconfig`中选中liveshell后保存退出，执行`make V=s`进行编译。编译完成后将`liveshell_1.2-1_xxx.ipk`上传到Openwrt中，执行以下命令安装到/usr/bin目录下
+3. 在`make menuconfig`中选中liveshell后保存退出，执行`make V=s`进行编译。编译完成后将`liveshell_1.4-1_xxx.ipk`上传到Openwrt中，执行以下命令安装到/usr/bin目录下
 
-		opkg install liveShell_1.2-1_xxx.ipk
+		opkg install liveShell_1.4-1_xxx.ipk
 
 
 #####4.使用

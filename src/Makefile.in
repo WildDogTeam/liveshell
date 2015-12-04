@@ -49,7 +49,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = LiveShell$(EXEEXT)
+bin_PROGRAMS = liveshell$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -62,9 +62,9 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_LiveShell_OBJECTS = liveshell.$(OBJEXT)
-LiveShell_OBJECTS = $(am_LiveShell_OBJECTS)
-LiveShell_DEPENDENCIES = ../lib/libwilddog.a
+am_liveshell_OBJECTS = liveshell.$(OBJEXT)
+liveshell_OBJECTS = $(am_liveshell_OBJECTS)
+liveshell_DEPENDENCIES = ../lib/libwilddog.a
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -73,8 +73,8 @@ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 CCLD = $(CC)
 LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-SOURCES = $(LiveShell_SOURCES)
-DIST_SOURCES = $(LiveShell_SOURCES)
+SOURCES = $(liveshell_SOURCES)
+DIST_SOURCES = $(liveshell_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -178,9 +178,9 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-LiveShell_SOURCES = liveshell.c
+liveshell_SOURCES = liveshell.c
 INCLUDES = -I ../lib/wilddog-client-c/include
-LiveShell_LDADD = ../lib/libwilddog.a
+liveshell_LDADD = ../lib/libwilddog.a
 all: all-am
 
 .SUFFIXES:
@@ -255,9 +255,9 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-LiveShell$(EXEEXT): $(LiveShell_OBJECTS) $(LiveShell_DEPENDENCIES) $(EXTRA_LiveShell_DEPENDENCIES) 
-	@rm -f LiveShell$(EXEEXT)
-	$(LINK) $(LiveShell_OBJECTS) $(LiveShell_LDADD) $(LIBS)
+liveshell$(EXEEXT): $(liveshell_OBJECTS) $(liveshell_DEPENDENCIES) $(EXTRA_liveshell_DEPENDENCIES) 
+	@rm -f liveshell$(EXEEXT)
+	$(LINK) $(liveshell_OBJECTS) $(liveshell_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

@@ -250,7 +250,7 @@ int main(int argc, char **argv)
             }
 	    if(strcmp(long_options[option_index].name,"version")==0)
 	    {
-		    printf("LiveShell Version: %s\n", LIVESHELL_VERSION);	
+		    printf("liveshell Version: %s\n", LIVESHELL_VERSION);	
 		    return 0;
 	    }
             break;

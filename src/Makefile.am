@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS=foreign
-bin_PROGRAMS=LiveShell
-LiveShell_SOURCES=liveshell.c
+bin_PROGRAMS=liveshell
+liveshell_SOURCES=liveshell.c
 INCLUDES=-I ../lib/wilddog-client-c/include
-LiveShell_LDADD=../lib/libwilddog.a
+liveshell_LDADD=../lib/libwilddog.a

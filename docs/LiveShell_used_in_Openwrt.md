@@ -11,7 +11,7 @@
 	cd liveshell	
 	git submodule update --init --recursive
 
-#####2. 生成LiveShell-1.2.tar.gz安装包
+#####2. 生成liveshell-1.4.tar.gz安装包
 注意权限，可能需要root权限
 
 	./configure
@@ -19,20 +19,20 @@
 
 #####3. 在Openwrt下制作ipk并安装
 
-1. 将步骤2中生成的`LiveShell-1.2.tar.gz`拷贝到Openwrt根目录下的dl目录中；
+1. 将步骤2中生成的`liveshell-1.4.tar.gz`拷贝到Openwrt根目录下的dl目录中；
 
-2. 在Openwrt添加LiveShell包，在Openwrt的根目录下；
+2. 在Openwrt添加liveshell包，在Openwrt的根目录下；
 
 		cd ./package/utils/
-		mkdir LiveShell
-		cd LiveShell/
+		mkdir liveshell
+		cd liveshell/
 		touch Makefile
 
 	Makefile内容如下：
 
 		include $(TOPDIR)/rules.mk
-		PKG_NAME:=LiveShell
-		PKG_VERSION:=1.2
+		PKG_NAME:=liveshell
+		PKG_VERSION:=1.4
 		PKG_RELEASE:=1
 	
 	
@@ -45,17 +45,17 @@
 		include $(INCLUDE_DIR)/package.mk
 	
 	
-		define Package/LiveShell
+		define Package/liveshell
 			SECTION:=utils
 			CATEGORY:=Utilities
-			TITLE:=LiveShell — live shell
+			TITLE:=liveshell — live shell
 		endef
 	
 		PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 		PKG_INSTALL_DIR:=$(PKG_BUILD_DIR)/ipkg-install
 	
 	
-		define Package/LiveShell/description
+		define Package/liveshell/description
 			If you can’t figure out what this program does, you’re probably
 			brain-dead and need immediate medical attention.
 		endef
@@ -65,22 +65,22 @@
 	  		$(call Build/Configure/Default,--with-sectype=dtls)
 		endef
 	
-		define Package/LiveShell/install
+		define Package/liveshell/install
 			$(INSTALL_DIR) $(1)/usr/bin
 			$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(1)/usr/bin/
 		endef
 	
-		$(eval $(call BuildPackage,LiveShell))
+		$(eval $(call BuildPackage,liveshell))
 
 	Makefile中有两点值得注意：
 		
-	- `define Package/LiveShell`中的`CATEGORY:=Utilities`表明在`make menuconfig`中的`Utilities`选项中可以找到LiveShell。
+	- `define Package/liveshell`中的`CATEGORY:=Utilities`表明在`make menuconfig`中的`Utilities`选项中可以找到liveshell。
 	
-	- `define Build/Configure`中的`$(call Build/Configure/Default,--with-sectype=dtls)`配置了LiveShell的安全类型，有三种类型可以选择：`nosec`，`tinydtls`和`dtls`。
+	- `define Build/Configure`中的`$(call Build/Configure/Default,--with-sectype=dtls)`配置了liveshell的安全类型，有三种类型可以选择：`nosec`，`tinydtls`和`dtls`。
 
-3. 在`make menuconfig`中选中LiveShell后保存退出，执行`make V=s`进行编译。编译完成后将`LiveShell_1.2-1_xxx.ipk`上传到Openwrt中，执行以下命令安装到/usr/bin目录下
+3. 在`make menuconfig`中选中liveshell后保存退出，执行`make V=s`进行编译。编译完成后将`liveshell_1.4-1_xxx.ipk`上传到Openwrt中，执行以下命令安装到/usr/bin目录下
 
-		opkg install LiveShell_1.2-1_xxx.ipk
+		opkg install liveShell_1.4-1_xxx.ipk
 
 
 #####4.使用

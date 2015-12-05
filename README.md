@@ -4,7 +4,7 @@ liveshell工具是采用Wilddog云以及WildDog C/嵌入式SDK制作的，远程
 
 WildDog C/嵌入式的SDK 使用的是CoAP UDP + DTLS + CBOR技术。
 
-Linux发行版均可使用该工具，已在以下发行版中测试过：
+Linux发行版均可使用该工具，已在以下发行版中测试通过：
 
 	Linux版本                                                       内核版本
 	centos-release-7-1.1503.el7.centos.2.8.x86_64                   3.10.0-229.el7.x86_64
@@ -16,7 +16,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 	Ubuntu14.04.01                                                  3.16.0-30-generic
 	Ubuntu12.04                                                     3.13.0-32-generic
 
-除了上述各大主流的Linux发行版可以使用，在Openwrt系统中同样可以使用liveshell工具，具体的安装步骤请参见`docs`下的`liveshell_used_in_Openwrt.md`文档。
+除了上述各大主流的Linux发行版可以使用，在**Openwrt**系统中同样可以使用liveshell工具，具体的安装步骤请参见`openwrt`目录下的`liveshell_used_in_Openwrt.md`文档。
 
 ####linux环境下安装说明：
 #####1. 下载
@@ -40,6 +40,8 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 #####3.使用
 
 	liveshell  [option] <your wilddog url> <your callback command>
+
+liveshell命令监听`your wilddog url`下数据的变化，当数据发生变化时，调用`your callback command`，并且将最新的数据（json字符串）作为第一个参数传递给`your callback command`。
 
 #####4. option参数说明
 
@@ -67,10 +69,11 @@ Linux发行版均可使用该工具，已在以下发行版中测试过：
 
 2. 终端运行liveshell，将`<your Appid>`替换成你自己的appid
 
-		liveshell -ov coaps://<your Appid>.wilddogio.com/path ls
+		liveshell coaps://<your Appid>.wilddogio.com/path ls
 
 3. 终端的显示结果等同于在终端运行"ls /"，修改云端数据，把"/"改为"-l /"，在终端立刻显示"ls -l /"的结果；类似的，你也可以将<your callback command>改为shell脚本，执行更加复杂的操作。
 
 4. 在传入auth数据的情况下，我们可以将云端安全规则中的读写权限配置为false，这样只有在auth正确的条件下，才可以读写。
 
-		liveshell -ov --authvalue=XXXXXXXEFAHYAUDAF1SACfEXXXXXXX coaps://<your Appid>.wilddogio.com/path ls
+		liveshell --authvalue=XXXXXXXEFAHYAUDAF1SACfEXXXXXXX coaps://<your Appid>.wilddogio.com/path ls
+

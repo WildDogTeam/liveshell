@@ -1,5 +1,5 @@
 
-####Openwrt环境下安装说明：
+####openwrt环境下安装说明：
 #####1. 下载
 
 从git下载到文件夹
@@ -17,60 +17,17 @@
 	./configure
 	make dist
 
-#####3. 在Openwrt下制作ipk并安装
+#####3. 在openwrt下制作ipk并安装
 
-1. 将步骤2中生成的`liveshell-1.4.tar.gz`拷贝到Openwrt根目录下的dl目录中；
+1. 将步骤2中生成的`liveshell-1.4.tar.gz`拷贝到openwrt根目录下的`dl`目录中；
 
-2. 在Openwrt添加liveshell包，在Openwrt的根目录下；
+2. 在openwrt添加liveshell包，在openwrt的根目录下；
 
 		cd ./package/utils/
 		mkdir liveshell
 		cd liveshell/
-		touch Makefile
 
-	Makefile内容如下：
-
-		include $(TOPDIR)/rules.mk
-		PKG_NAME:=liveshell
-		PKG_VERSION:=1.4
-		PKG_RELEASE:=1
-	
-	
-		PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-	
-	
-		PKG_FIXUP:=autoreconf
-		PKG_INSTALL:=1
-	
-		include $(INCLUDE_DIR)/package.mk
-	
-	
-		define Package/liveshell
-			SECTION:=utils
-			CATEGORY:=Utilities
-			TITLE:=liveshell — live shell
-		endef
-	
-		PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-		PKG_INSTALL_DIR:=$(PKG_BUILD_DIR)/ipkg-install
-	
-	
-		define Package/liveshell/description
-			If you can’t figure out what this program does, you’re probably
-			brain-dead and need immediate medical attention.
-		endef
-	
-	
-		define Build/Configure
-	  		$(call Build/Configure/Default,--with-sectype=dtls)
-		endef
-	
-		define Package/liveshell/install
-			$(INSTALL_DIR) $(1)/usr/bin
-			$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(1)/usr/bin/
-		endef
-	
-		$(eval $(call BuildPackage,liveshell))
+	将和本文档同一目录下的Makefile拷贝到openwrt目录的`package/utils/liveshell`目录下。
 
 	Makefile中有两点值得注意：
 		
@@ -78,9 +35,9 @@
 	
 	- `define Build/Configure`中的`$(call Build/Configure/Default,--with-sectype=dtls)`配置了liveshell的安全类型，有三种类型可以选择：`nosec`，`tinydtls`和`dtls`。
 
-3. 在`make menuconfig`中选中liveshell后保存退出，执行`make V=s`进行编译。编译完成后将`liveshell_1.4-1_xxx.ipk`上传到Openwrt中，执行以下命令安装到/usr/bin目录下
+3. 在`make menuconfig`中选中liveshell后保存退出，执行`make V=s`进行编译。编译完成后将`liveshell_1.4-xxx.ipk`上传到openwrt中，执行以下命令安装到/usr/bin目录下
 
-		opkg install liveShell_1.4-1_xxx.ipk
+		opkg install liveShell_1.4-xxx.ipk
 
 
 #####4.使用

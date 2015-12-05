@@ -44,7 +44,18 @@ Linux发行版均可使用该工具，已在以下发行版中测试通过：
 
 liveshell命令监听`your wilddog url`下数据的变化，当数据发生变化时，调用`your callback command`，并且将最新的数据（json字符串）作为第一个参数传递给`your callback command`。
 
-#####4. option参数说明
+#####4. configure 配置参数说明
+
+	--with-endian=ARG       大小端, ARG可设为big|little,  默认little
+	--with-bits=ARG         机器位数, ARG可设为8|16|32|64, 默认32
+	--with-maxsize=ARG      应用层协议长度, ARG可设为0~1300, 默认1280
+	--with-queuenum=ARG     消息队列个数, 默认32
+	--with-retranstime=ARG  重传超时时间（ms）, 默认10000
+	--with-recvtimeout=ARG  单次最大接收时间（ms）, 默认100
+	--with-sectype=ARG      加密方式, ARG可设为nosec|dtls|tinydtls, 默认tinydtls
+
+
+#####5. liveshell 命令参数说明
 
 	-o 获取到原始数据也会触发一次command回调
 
@@ -57,8 +68,8 @@ liveshell命令监听`your wilddog url`下数据的变化，当数据发生变�
 	--version 打印版本号
 
 	--authvalue=<your auth data> 传入auth数据（如超级密钥、token等）
-	
-#####5. 例子
+
+#####6. 例子
 
 ######显示根目录的文件
 

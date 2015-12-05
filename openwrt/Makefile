@@ -1,0 +1,41 @@
+include $(TOPDIR)/rules.mk
+PKG_NAME:=LiveShell
+PKG_VERSION:=1.5
+PKG_RELEASE:=1
+
+
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+
+
+PKG_FIXUP:=autoreconf
+PKG_INSTALL:=1
+
+include $(INCLUDE_DIR)/package.mk
+
+
+define Package/LiveShell
+    SECTION:=utils
+    CATEGORY:=Utilities
+    TITLE:=LiveShell — live shell
+endef
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_INSTALL_DIR:=$(PKG_BUILD_DIR)/ipkg-install
+
+
+define Package/LiveShell/description
+    If you can’t figure out what this program does, you’re probably
+    brain-dead and need immediate medical attention.
+endef
+
+
+define Build/Configure
+	$(call Build/Configure/Default,--with-sectype=dtls)
+endef
+
+define Package/LiveShell/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(1)/usr/bin/
+endef
+
+$(eval $(call BuildPackage,LiveShell))

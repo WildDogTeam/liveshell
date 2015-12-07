@@ -38,24 +38,26 @@ Linux发行版均可使用该工具，已在以下发行版中测试通过：
 	make
 	make install
 
-#####3.使用
-
-	liveshell  [option] <your wilddog url> <your callback command>
-
-liveshell命令监听`your wilddog url`下数据的变化，当数据发生变化时，调用`your callback command`，并且将最新的数据（json字符串）作为第一个参数传递给`your callback command`。
-
-#####4. configure 配置参数说明
+######configure 配置参数说明
 
 	--with-endian=ARG       大小端, ARG可设为big|little,  默认little
 	--with-bits=ARG         机器位数, ARG可设为8|16|32|64, 默认32
 	--with-maxsize=ARG      应用层协议长度, ARG可设为0~1300, 默认1280
 	--with-queuenum=ARG     消息队列个数, 默认32
-	--with-retranstime=ARG  重传超时时间（ms）, 默认10000
-	--with-recvtimeout=ARG  单次最大接收时间（ms）, 默认100
+	--with-retranstime=ARG  重传超时时间（ms）, 默认10000ms
+	--with-recvtimeout=ARG  单次最大接收时间（ms）, 默认100ms
 	--with-sectype=ARG      加密方式, ARG可设为nosec|dtls|tinydtls, 默认tinydtls
 
 
-#####5. liveshell 命令参数说明
+#####3.使用
+
+	liveshell  [option] <your wilddog url> <your callback command>
+
+liveshell命令监听`your wilddog url`下数据的变化，当数据发生变化时，调用`your callback command`，并且将最新的数据（json字符串）作为第一个参数传递给`your callback command`，注意，`your callback command`需要本身能够在console中执行，如果`your callback command`还需要root权限，请用root权限调用liveshell。
+
+
+
+######liveshell 命令参数说明
 
 	-o 获取到原始数据也会触发一次command回调
 
@@ -69,7 +71,7 @@ liveshell命令监听`your wilddog url`下数据的变化，当数据发生变�
 
 	--authvalue=<your auth data> 传入auth数据（如超级密钥、token等）
 
-#####6. 例子
+#####4. 例子
 
 ######显示根目录的文件
 
@@ -88,4 +90,3 @@ liveshell命令监听`your wilddog url`下数据的变化，当数据发生变�
 4. 在传入auth数据的情况下，我们可以将云端安全规则中的读写权限配置为false，这样只有在auth正确的条件下，才可以读写。
 
 		liveshell --authvalue=XXXXXXXEFAHYAUDAF1SACfEXXXXXXX coaps://<your Appid>.wilddogio.com/path ls
-

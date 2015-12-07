@@ -11,11 +11,11 @@
 	cd liveshell	
 	git submodule update --init --recursive
 
-#####2. 生成liveshell-1.5.tar.gz安装包
-注意权限，可能需要root权限
+#####2. 部署到openwrt项目中
 
-	./configure
-	make dist
+将本目录下的liveshell文件夹（以及其中的Makefile文件）拷贝到openwrt项目中的package目录下。
+
+	cp -rf openwrt/liveshell <your openwrt path>/package
 
 #####3. 在openwrt下制作ipk并安装
 

@@ -5,7 +5,7 @@ PKG_RELEASE:=1
 
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-
+PKG_SOURCE_URL:=https://github.com/WildDogTeam/liveshell/blob/develop/openwrt/
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
@@ -17,6 +17,7 @@ define Package/LiveShell
     SECTION:=utils
     CATEGORY:=Utilities
     TITLE:=LiveShell — live shell
+	URL:=https://www.wilddog.com
 endef
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)

@@ -13,7 +13,7 @@
 
 #####2. 部署到openwrt项目中
 
-将本目录下的liveshell文件夹（以及其中的Makefile文件）拷贝到openwrt项目中的package/utils目录下（openwrt 12.09及之前的版本拷贝到package目录）。
+将本目录下的liveshell文件夹（以及其中的Makefile文件）拷贝到openwrt项目中的package/utils目录下（如果没有utils目录直接放在package目录）。
 
 	cp -rf openwrt-liveshell/liveshell <your openwrt path>/package/utils/
 

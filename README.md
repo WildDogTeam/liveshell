@@ -17,7 +17,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试通过：
 	Ubuntu12.04                                                     3.13.0-32-generic
 
 	
-除了上述各大主流的Linux发行版可以使用，在**openwrt**系统中同样可以使用liveshell工具，具体的安装步骤请参见`openwrt`目录下的`liveshell_used_in_Openwrt.md`文档。
+除了上述各大主流的Linux发行版可以使用，在**openwrt**系统中同样可以使用liveshell工具，具体的安装步骤请参见`openwrt-liveshell`目录下的`liveshell_used_in_Openwrt.md`文档。
 
 ####linux环境下安装说明：
 #####1. 下载

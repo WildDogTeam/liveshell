@@ -31,7 +31,7 @@ endef
 
 
 define Build/Configure
-	$(call Build/Configure/Default,--with-sectype=dtls)
+	$(call Build/Configure/Default,--with-sectype=tinydtls --with-endian=big)
 endef
 
 define Package/liveshell/install

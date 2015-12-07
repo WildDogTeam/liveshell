@@ -85,6 +85,11 @@ typedef struct _watch_ctx
     char *quote;
 }WATCH_CTX;
 
+extern Wilddog_Str_T  * WD_SYSTEM wilddog_debug_n2jsonString
+    (
+    Wilddog_Node_T* p_head
+    );
+
 STATIC void observer_callback
     (
     const Wilddog_Node_T* p_snapshot, 

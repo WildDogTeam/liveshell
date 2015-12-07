@@ -1,5 +1,5 @@
 include $(TOPDIR)/rules.mk
-PKG_NAME:=LiveShell
+PKG_NAME:=liveshell
 PKG_VERSION:=1.5
 PKG_RELEASE:=1
 
@@ -13,10 +13,10 @@ PKG_INSTALL:=1
 include $(INCLUDE_DIR)/package.mk
 
 
-define Package/LiveShell
+define Package/liveshell
     SECTION:=utils
     CATEGORY:=Utilities
-    TITLE:=LiveShell — live shell
+    TITLE:=liveshell — live shell
 	URL:=https://www.wilddog.com
 endef
 
@@ -24,7 +24,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_INSTALL_DIR:=$(PKG_BUILD_DIR)/ipkg-install
 
 
-define Package/LiveShell/description
+define Package/liveshell/description
     If you can’t figure out what this program does, you’re probably
     brain-dead and need immediate medical attention.
 endef
@@ -34,9 +34,9 @@ define Build/Configure
 	$(call Build/Configure/Default,--with-sectype=dtls)
 endef
 
-define Package/LiveShell/install
+define Package/liveshell/install
 	$(INSTALL_DIR) $(1)/usr/bin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/$(PKG_NAME) $(1)/usr/bin/
 endef
 
-$(eval $(call BuildPackage,LiveShell))
+$(eval $(call BuildPackage,liveshell))

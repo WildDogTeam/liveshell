@@ -16,7 +16,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/liveshell
     SECTION:=utils
     CATEGORY:=Utilities
-    TITLE:=liveshell — live shell
+    TITLE:=liveshell - a good tool for live shell
 	URL:=https://www.wilddog.com
 endef
 
@@ -31,7 +31,7 @@ endef
 
 
 define Build/Configure
-	$(call Build/Configure/Default,--with-sectype=tinydtls --with-endian=big)
+	$(call Build/Configure/Default,--with-endian=big)
 endef
 
 define Package/liveshell/install

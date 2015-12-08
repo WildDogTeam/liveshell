@@ -644,7 +644,6 @@ RANLIB
 am__fastdepCC_FALSE
 am__fastdepCC_TRUE
 CCDEPMODE
-am__nodep
 AMDEPBACKSLASH
 AMDEP_FALSE
 AMDEP_TRUE
@@ -1361,13 +1360,13 @@ Optional Features:
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
- --with-endian=                Specify the endian
- --with-bits=                Specify the machine bits
- --with-maxsize=                Specify the proto maxsize
- --with-queuenum=                Specify the queue num
- --with-retransmitetime=                Specify the retransmite time
- --with-receivetimeout=                Specify the receive timeout
- --with-sectype=                Specify the sec type
+  --with-endian=ARG       the endian, ARG=big|little, default is little
+  --with-bits=ARG         the machine bits, ARG=8|16|32|64, default is 32
+  --with-maxsize=ARG      the proto maxsize, ARG=0~1300, default is 1280
+  --with-queuenum=ARG     the queue num, default is 32
+  --with-retranstime=ARG  the retransmite time in ms, default is 10000
+  --with-recvtimeout=ARG  the receive timeout in ms, default is 100
+  --with-sectype=ARG      the sec type, ARG=nosec|dtls|tinydtls, default is tinydtls
 
 Some influential environment variables:
   CC          C compiler command
@@ -2817,7 +2816,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=liveshell
- VERSION=1.4
+ VERSION=1.5
 
 
 cat >>confdefs.h <<_ACEOF
@@ -2847,11 +2846,11 @@ MAKEINFO=${MAKEINFO-"${am_missing_run}makeinfo"}
 
 # We need awk for the "check" target.  The system "awk" is bad on
 # some platforms.
-# Always define AMTAR for backward compatibility.  Yes, it's still used
-# in the wild :-(  We should find a proper way to deprecate it ...
-AMTAR='$${TAR-tar}'
+# Always define AMTAR for backward compatibility.
 
-am__tar='$${TAR-tar} chof - "$$tardir"' am__untar='$${TAR-tar} xf -'
+AMTAR=${AMTAR-"${am_missing_run}tar"}
+
+am__tar='${AMTAR} chof - "$$tardir"'; am__untar='${AMTAR} xf -'
 
 
 
@@ -3699,7 +3698,6 @@ fi
 if test "x$enable_dependency_tracking" != xno; then
   am_depcomp="$ac_aux_dir/depcomp"
   AMDEPBACKSLASH='\'
-  am__nodep='_no'
 fi
  if test "x$enable_dependency_tracking" != xno; then
   AMDEP_TRUE=
@@ -3724,7 +3722,6 @@ else
   # instance it was reported that on HP-UX the gcc test will end up
   # making a dummy file named `D' -- because `-MD' means `put the output
   # in D'.
-  rm -rf conftest.dir
   mkdir conftest.dir
   # Copy depcomp to subdir because otherwise we won't find it if we're
   # using a relative directory.
@@ -3784,7 +3781,7 @@ else
 	break
       fi
       ;;
-    msvc7 | msvc7msys | msvisualcpp | msvcmsys)
+    msvisualcpp | msvcmsys)
       # This compiler won't grok `-c -o', but also, the minuso test has
       # not run yet.  These depmodes are late enough in the game, and
       # so weak that their functioning should not be impacted.
@@ -3936,11 +3933,19 @@ fi
 
 # Check whether --with-endian was given.
 if test "${with_endian+set}" = set; then :
-  withval=$with_endian;
+  withval=$with_endian; if test "x$withval" = xlittle;then
+
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_LITTLE_ENDIAN "$withval"
+#define WILDDOG_LITTLE_ENDIAN 1
 _ACEOF
 
+		else
+
+cat >>confdefs.h <<_ACEOF
+#define WILDDOG_LITTLE_ENDIAN 0
+_ACEOF
+
+		fi
 
 fi
 
@@ -3951,7 +3956,7 @@ fi
 if test "${with_bits+set}" = set; then :
   withval=$with_bits;
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_MACHINE_BITS "$withval"
+#define WILDDOG_MACHINE_BITS $withval
 _ACEOF
 
 
@@ -3964,7 +3969,7 @@ fi
 if test "${with_maxsize+set}" = set; then :
   withval=$with_maxsize;
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_PROTO_MAXSIZE "$withval"
+#define WILDDOG_PROTO_MAXSIZE $withval
 _ACEOF
 
 
@@ -3977,7 +3982,7 @@ fi
 if test "${with_queuenum+set}" = set; then :
   withval=$with_queuenum;
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_REQ_QUEUE_NUM "$withval"
+#define WILDDOG_REQ_QUEUE_NUM $withval
 _ACEOF
 
 
@@ -3990,7 +3995,7 @@ fi
 if test "${with_retransmitetime+set}" = set; then :
   withval=$with_retransmitetime;
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_RETRANSMITE_TIME "$withval"
+#define WILDDOG_RETRANSMITE_TIME $withval
 _ACEOF
 
 
@@ -4003,7 +4008,7 @@ fi
 if test "${with_receivetimeout+set}" = set; then :
   withval=$with_receivetimeout;
 cat >>confdefs.h <<_ACEOF
-#define WILDDOG_RECEIVE_TIMEOUT "$withval"
+#define WILDDOG_RECEIVE_TIMEOUT $withval
 _ACEOF
 
 
@@ -4014,7 +4019,7 @@ fi
 
 # Check whether --with-sectype was given.
 if test "${with_sectype+set}" = set; then :
-  withval=$with_sectype; #AC_DEFINE_UNQUOTED([APP_SEC_TYPE],["$withval"], [des])
+  withval=$with_sectype; #AC_DEFINE_UNQUOTED([APP_SEC_TYPE],[$withval], [des])
 		APP_SEC_TYPE=$withval
 
 fi
@@ -4041,7 +4046,7 @@ fi
 
 
 #AC_ARG_WITH(wilddogport,
-#	    [ --with-wilddogport=                Specify the wilddog port],
+#	    [  --with-wilddogport=ARG	Specify the wilddog port],
 #		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
 #)
 #AC_SUBST(WILDDOG_PORT)

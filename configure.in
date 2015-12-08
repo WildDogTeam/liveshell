@@ -1,12 +1,12 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.65])
 AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 AC_CONFIG_SRCDIR([lib/wilddog-client-c/src/wilddog_api.c])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE(liveshell, 1.4)
+AM_INIT_AUTOMAKE(liveshell, 1.5)
 
 # Checks for programs.
 AC_PROG_CC
@@ -14,44 +14,48 @@ AC_PROG_CC
 AC_PROG_RANLIB
 
 AC_ARG_WITH(endian,
-	    [ --with-endian=                Specify the endian],
-		AC_DEFINE_UNQUOTED([WILDDOG_LITTLE_ENDIAN],["$withval"], [des])
+	    [  --with-endian=ARG       the endian, ARG=big|little, default is little],
+		if test "x$withval" = xlittle;then
+			AC_DEFINE_UNQUOTED([WILDDOG_LITTLE_ENDIAN],[1], [des])
+		else
+			AC_DEFINE_UNQUOTED([WILDDOG_LITTLE_ENDIAN],[0], [des])
+		fi
 )
 AC_SUBST(WILDDOG_LITTLE_ENDIAN)
 
 AC_ARG_WITH(bits,
-	    [ --with-bits=                Specify the machine bits],
-		AC_DEFINE_UNQUOTED([WILDDOG_MACHINE_BITS],["$withval"], [des])
+	    [  --with-bits=ARG         the machine bits, ARG=8|16|32|64, default is 32],
+		AC_DEFINE_UNQUOTED([WILDDOG_MACHINE_BITS],[$withval], [des])
 )
 AC_SUBST(WILDDOG_MACHINE_BITS)
 
 AC_ARG_WITH(maxsize,
-	    [ --with-maxsize=                Specify the proto maxsize],
-		AC_DEFINE_UNQUOTED([WILDDOG_PROTO_MAXSIZE],["$withval"], [des])
+	    [  --with-maxsize=ARG      the proto maxsize, ARG=0~1300, default is 1280],
+		AC_DEFINE_UNQUOTED([WILDDOG_PROTO_MAXSIZE],[$withval], [des])
 )
 AC_SUBST(WILDDOG_PROTO_MAXSIZE)
 
 AC_ARG_WITH(queuenum,
-	    [ --with-queuenum=                Specify the queue num],
-		AC_DEFINE_UNQUOTED([WILDDOG_REQ_QUEUE_NUM],["$withval"], [des])
+	    [  --with-queuenum=ARG     the queue num, default is 32],
+		AC_DEFINE_UNQUOTED([WILDDOG_REQ_QUEUE_NUM],[$withval], [des])
 )
 AC_SUBST(WILDDOG_REQ_QUEUE_NUM)
 
 AC_ARG_WITH(retransmitetime,
-	    [ --with-retransmitetime=                Specify the retransmite time],
-		AC_DEFINE_UNQUOTED([WILDDOG_RETRANSMITE_TIME],["$withval"], [des])
+	    [  --with-retranstime=ARG  the retransmite time in ms, default is 10000],
+		AC_DEFINE_UNQUOTED([WILDDOG_RETRANSMITE_TIME],[$withval], [des])
 )
 AC_SUBST(WILDDOG_RETRANSMITE_TIME)
 
 AC_ARG_WITH(receivetimeout,
-	    [ --with-receivetimeout=                Specify the receive timeout],
-		AC_DEFINE_UNQUOTED([WILDDOG_RECEIVE_TIMEOUT],["$withval"], [des])
+	    [  --with-recvtimeout=ARG  the receive timeout in ms, default is 100],
+		AC_DEFINE_UNQUOTED([WILDDOG_RECEIVE_TIMEOUT],[$withval], [des])
 )
 AC_SUBST(WILDDOG_RECEIVE_TIMEOUT)
 
 AC_ARG_WITH(sectype,
-	    [ --with-sectype=                Specify the sec type],
-		#AC_DEFINE_UNQUOTED([APP_SEC_TYPE],["$withval"], [des])
+	    [  --with-sectype=ARG      the sec type, ARG=nosec|dtls|tinydtls, default is tinydtls],
+		#AC_DEFINE_UNQUOTED([APP_SEC_TYPE],[$withval], [des])
 		APP_SEC_TYPE=$withval
 )
 AC_SUBST(APP_SEC_TYPE)
@@ -62,7 +66,7 @@ AM_CONDITIONAL(WITH_DTLS, [test x$APP_SEC_TYPE = xdtls])
 
 
 #AC_ARG_WITH(wilddogport,
-#	    [ --with-wilddogport=                Specify the wilddog port],
+#	    [  --with-wilddogport=ARG	Specify the wilddog port],
 #		AC_DEFINE_UNQUOTED([WILDDOG_PORT],[$withval], [des])
 #)
 #AC_SUBST(WILDDOG_PORT)

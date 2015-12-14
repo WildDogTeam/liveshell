@@ -31,6 +31,7 @@
 
 		opkg install liveshell_xxxxxx.ipk
 
+
 #####4.使用
 
 	liveshell  [option] <your wilddog url> <your callback command>

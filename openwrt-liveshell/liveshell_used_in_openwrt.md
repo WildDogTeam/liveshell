@@ -21,7 +21,7 @@
 
 1. 在openwrt项目的根目录下运行`make menuconfig`；
 
-2. 在`Utilities`目录下，选中`liveshell`，并设置为module（如果设置为built-in，则可忽略4、5两步）；
+2. 在`Utilities`目录下，选中`liveshell`，并设置为module（如果设置为built-in，则可忽略4、5两步，但需要将整个openwrt固件刷到设备中）；
 
 3. 运行make编译openwrt；
 

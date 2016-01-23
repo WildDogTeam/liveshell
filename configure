@@ -601,8 +601,8 @@ LIBOBJS
 EGREP
 GREP
 CPP
-WITH_DTLS_FALSE
-WITH_DTLS_TRUE
+WITH_MBEDTLS_FALSE
+WITH_MBEDTLS_TRUE
 WITHOUT_DTLS_FALSE
 WITHOUT_DTLS_TRUE
 APP_SEC_TYPE
@@ -1339,7 +1339,7 @@ Optional Packages:
   --with-queuenum=ARG     the queue num, default is 32
   --with-retranstime=ARG  the retransmite time in ms, default is 10000
   --with-recvtimeout=ARG  the receive timeout in ms, default is 100
-  --with-sectype=ARG      the sec type, ARG=nosec|dtls|tinydtls, default is tinydtls
+  --with-sectype=ARG      the sec type, ARG=nosec|mbedtls|tinydtls, default is tinydtls
 
 Some influential environment variables:
   CC          C compiler command
@@ -2783,7 +2783,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=liveshell
- VERSION=1.5
+ VERSION=1.5.0
 
 
 cat >>confdefs.h <<_ACEOF
@@ -4004,12 +4004,12 @@ else
   WITHOUT_DTLS_FALSE=
 fi
 
- if test x$APP_SEC_TYPE = xdtls; then
-  WITH_DTLS_TRUE=
-  WITH_DTLS_FALSE='#'
+ if test x$APP_SEC_TYPE = xmbedtls; then
+  WITH_MBEDTLS_TRUE=
+  WITH_MBEDTLS_FALSE='#'
 else
-  WITH_DTLS_TRUE='#'
-  WITH_DTLS_FALSE=
+  WITH_MBEDTLS_TRUE='#'
+  WITH_MBEDTLS_FALSE=
 fi
 
 
@@ -5092,8 +5092,8 @@ if test -z "${WITHOUT_DTLS_TRUE}" && test -z "${WITHOUT_DTLS_FALSE}"; then
   as_fn_error "conditional \"WITHOUT_DTLS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${WITH_DTLS_TRUE}" && test -z "${WITH_DTLS_FALSE}"; then
-  as_fn_error "conditional \"WITH_DTLS\" was never defined.
+if test -z "${WITH_MBEDTLS_TRUE}" && test -z "${WITH_MBEDTLS_FALSE}"; then
+  as_fn_error "conditional \"WITH_MBEDTLS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 

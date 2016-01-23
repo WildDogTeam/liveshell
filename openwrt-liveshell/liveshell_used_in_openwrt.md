@@ -11,23 +11,23 @@
 	cd liveshell	
 	git submodule update --init --recursive
 
-#####2. 部署到openwrt项目中
+#####2. 部署到OpenWRT项目中
 
-将本目录下的liveshell文件夹（以及其中的Makefile文件）拷贝到openwrt项目中的package/utils目录下（如果没有utils目录直接放在package目录）。
+将本目录下的liveshell文件夹（以及其中的Makefile文件）拷贝到OpenWRT项目中的package/utils目录下（如果没有utils目录直接放在package目录）。
 
 	cp -rf openwrt-liveshell/liveshell <your openwrt path>/package/utils/
 
-#####3. 在openwrt项目下制作ipk并安装
+#####3. 在OpenWRT项目下制作ipk并安装
 
-1. 在openwrt项目的根目录下运行`make menuconfig`；
+1. 在OpenWRT项目的根目录下运行`make menuconfig`；
 
 2. 在`Utilities`目录下，选中`liveshell`，并设置为module（如果设置为built-in，则可忽略4、5两步，但需要将整个openwrt固件刷到设备中）；
 
-3. 运行make编译openwrt；
+3. 运行make编译OpenWRT；
 
 4. 编译成功后，在bin目录下能找到`liveshell_xxxxxx.ipk`；
 
-5. 将这个ipk上传到openwrt中，执行opkg安装
+5. 将这个ipk上传到OpenWRT中，执行opkg安装
 
 		opkg install liveshell_xxxxxx.ipk
 

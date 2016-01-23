@@ -46,7 +46,7 @@ Linux发行版均可使用该工具，已在以下发行版中测试通过：
 	--with-queuenum=ARG     消息队列个数, 默认32
 	--with-retranstime=ARG  重传超时时间（ms）, 默认10000ms
 	--with-recvtimeout=ARG  单次最大接收时间（ms）, 默认100ms
-	--with-sectype=ARG      加密方式, ARG可设为nosec|dtls|tinydtls, 默认tinydtls
+	--with-sectype=ARG      加密方式, ARG可设为nosec|mbedtls|tinydtls, 默认tinydtls
 
 
 #####3.使用

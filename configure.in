@@ -6,7 +6,7 @@ AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
 AC_CONFIG_SRCDIR([lib/wilddog-client-c/src/wilddog_api.c])
 AC_CONFIG_HEADERS([config.h])
 
-AM_INIT_AUTOMAKE(liveshell, 1.5)
+AM_INIT_AUTOMAKE(liveshell, 1.5.0)
 
 # Checks for programs.
 AC_PROG_CC
@@ -54,7 +54,7 @@ AC_ARG_WITH(receivetimeout,
 AC_SUBST(WILDDOG_RECEIVE_TIMEOUT)
 
 AC_ARG_WITH(sectype,
-	    [  --with-sectype=ARG      the sec type, ARG=nosec|dtls|tinydtls, default is tinydtls],
+	    [  --with-sectype=ARG      the sec type, ARG=nosec|mbedtls|tinydtls, default is tinydtls],
 		#AC_DEFINE_UNQUOTED([APP_SEC_TYPE],[$withval], [des])
 		APP_SEC_TYPE=$withval
 )
@@ -62,7 +62,7 @@ AC_SUBST(APP_SEC_TYPE)
 
 #AM_CONDITIONAL(WITH_TINYDTLS, [test x$APP_SEC_TYPE = xtinydtls])
 AM_CONDITIONAL(WITHOUT_DTLS, [test x$APP_SEC_TYPE = xnosec])
-AM_CONDITIONAL(WITH_DTLS, [test x$APP_SEC_TYPE = xdtls])
+AM_CONDITIONAL(WITH_MBEDTLS, [test x$APP_SEC_TYPE = xmbedtls])
 
 
 #AC_ARG_WITH(wilddogport,

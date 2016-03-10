@@ -2783,7 +2783,8 @@ fi
 
 # Define the identity of the package.
  PACKAGE=liveshell
- VERSION=1.5.0
+ VERSION=1.5.1
+
 
 
 cat >>confdefs.h <<_ACEOF

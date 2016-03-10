@@ -2786,6 +2786,7 @@ fi
  VERSION=1.5.1
 
 
+
 cat >>confdefs.h <<_ACEOF
 #define PACKAGE "$PACKAGE"
 _ACEOF

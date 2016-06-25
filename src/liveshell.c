@@ -25,7 +25,7 @@
 #include "wilddog.h"
 
 
-#define  LIVESHELL_VERSION	"1.5.1" 
+#define  LIVESHELL_VERSION	"1.5.2" 
 
 STATIC void auth_callback
     (

@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 PKG_NAME:=liveshell
-PKG_VERSION:=1.5.2
+PKG_VERSION:=1.5.3
 PKG_RELEASE:=1
 
 

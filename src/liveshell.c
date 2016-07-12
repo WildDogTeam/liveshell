@@ -21,11 +21,15 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include <string.h> 
+#include <signal.h>
+#include <sys/wait.h>
 #include <sys/types.h>
 #include "wilddog.h"
 
 
-#define  LIVESHELL_VERSION	"1.5.3" 
+#define  LIVESHELL_VERSION	"1.5.4" 
+
+static void sig_child(int signo);
 
 STATIC void auth_callback
     (
@@ -311,7 +315,7 @@ int main(int argc, char **argv)
     watch_ctx.verbose = verbose;
     watch_ctx.quote = quote;
     watch_ctx.isFinished = &isFinished;
-    
+    signal(SIGCHLD, sig_child);
     wilddog_addObserver(wilddog, WD_ET_VALUECHANGE, observer_callback, (void*)&watch_ctx);
     while(1)
     {
@@ -328,5 +332,15 @@ int main(int argc, char **argv)
     wilddog_destroy(&wilddog);
     
     return 0;
+}
+
+static void sig_child(int signo){
+    pid_t pid;
+    int stat;
+
+    while((pid = waitpid(-1, &stat, WNOHANG)) > 0){
+        //printf("child %d terminated.\n", pid);
+    }
+    return;
 }
 

@@ -1,11 +1,11 @@
 include $(TOPDIR)/rules.mk
 PKG_NAME:=liveshell
-PKG_VERSION:=1.5.4
+PKG_VERSION:=1.5.5
 PKG_RELEASE:=1
 
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://cdn.wilddog.com/c/client/liveshell/
+PKG_SOURCE_URL:=https://cdn.wilddog.com/tools/c/
 
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1

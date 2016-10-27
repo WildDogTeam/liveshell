@@ -27,7 +27,7 @@
 #include "wilddog.h"
 
 
-#define  LIVESHELL_VERSION	"1.5.4" 
+#define  LIVESHELL_VERSION	"1.5.5" 
 
 static void sig_child(int signo);
 
